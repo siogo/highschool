@@ -6,6 +6,9 @@
 	mysql_query("set names 'utf8'");
 	
 	$search = $_GET['search'];
-	echo $search;
+	$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_title like '%".$search."%'");
+	while ($row = mysql_fetch_array($result)) {
+		echo $row['para_title'].'<br />';
+	}
 
 ?>
