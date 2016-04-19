@@ -52,8 +52,8 @@
     <div id="content">	
 	    <div class="search">
 	        <form>
-			    <input type="text" placeholder="键入关键字"/>
-				<input type="button" value="搜索"/>
+			    <input type="text" id="txt" placeholder="键入关键字"/>
+				<input type="button" id="search" style="cursor:pointer" value="搜索"/>
 			</form>
 	    </div>
 		<div class="rmwz">
@@ -235,10 +235,14 @@
 		})
 
 		var pid = $('.wz-bt').find('span').text();
-		console.log(pid);
 
 		var a = $('.wz-xq').find('a');
-		$(a).attr('href','detarticle.php?pid='+pid)
+		$(a).attr('href','detarticle.php?pid='+pid);
+
+		$('#search').click(function(){
+			var text = $('#txt').val();
+			window.location.href = "http://127.0.0.1/bs/homework/public/search.php?search="+text;
+		});
 
 	});
 </script>
