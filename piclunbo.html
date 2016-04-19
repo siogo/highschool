@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div style="height: 300px; width: 400px;">
+	<img id="id1" src="./upload/111.jpg" style="height: 100%; width=100% ">
+</div>
+
+<script type="text/javascript">
+	var arr=new Array();
+	arr[0]="./upload/222.jpg";//放图片地址
+	arr[1]="./upload/333.jpg";
+	arr[2]="./upload/444.jpg";
+	arr[3]="./upload/111.jpg";
+	var num=0;
+	setInterval(turnpic,4000); //每隔4秒转换图片
+ 	function turnpic(){
+   		idsrc=document.getElementById("id1");
+   		if(num==arr.length-1){
+        	num=0;
+   		}else{
+        	num+=1;
+   		}
+   		idsrc.src=arr[num];
+	}
+</script>
+</body>
+</html>
