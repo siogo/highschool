@@ -242,6 +242,7 @@
 		$('#search').click(function(){
 			var text = $('#txt').val();
 			window.location.href = "http://127.0.0.1/bs/homework/public/search.php?search="+text;
+			console.log(1);
 		});
 
 	});
