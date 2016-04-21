@@ -36,7 +36,7 @@
 					<tr class="hang-3">
 					    <td colspan="2">
 						   <input type="submit" name="submit" value="登录"/> 
-						   <a href="#" class="a-kk">还没账号？</a>
+						   <a href="register.php" class="a-kk">还没账号？</a>
 						   <a href="#" class="a-kk">忘记密码？</a>
 						</td>
 					</tr>
