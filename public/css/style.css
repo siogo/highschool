@@ -351,6 +351,7 @@ a{text-decoration:none;color:#333}
 		color:#eee;
 		line-height:25px;
 		margin-left:13px;
+		position:relative;
 }
 #header .dz>ul>li>a{
 	display:block;
@@ -360,8 +361,8 @@ a{text-decoration:none;color:#333}
 	color:#a6aaa8;
 	letter-spacing:2px;
 }
-#header .dz .dlz{color:#fff;letter-spacing:1px}
-#header .dz .dlz>a{color:#fff;font-size:14px;}
+#header .dz .dlz{color:#000;letter-spacing:1px;position:absolute;top:68px;left:380px;}
+#header .dz .dlz>a{color:#000;font-size:14px;}
 #header .dz .dlz>a:hover{color:#05baf5;}
 #content{
 	  background:#cecabf;
