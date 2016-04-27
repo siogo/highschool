@@ -31,7 +31,11 @@
 				$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
 				if(preg_match($match, $username)){
 					$result = $this->connect->select('tb_student','email',$username);
-					return $result;
+					if($result == false){
+						return false;
+					}else{
+						return $result;
+					}
 				}else{
 					return false;
 				}

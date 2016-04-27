@@ -6,12 +6,16 @@
 	
 	if(isset($_POST["username"])){
 		$username = htmlspecialchars($_POST["username"]);
+		$_SESSION['username'] = $username;
+	}else{
+		$username = '';
 	}
 	if(isset($_POST["password"])){
 		$password = htmlspecialchars($_POST["password"]);
+	}else{
+		$password = '';
 	}
 	//setcookie("zan", 1);
-	$_SESSION['username'] = $username;
 	$connect_class = new connect;
 	$check_class = new check;
 

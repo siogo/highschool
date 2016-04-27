@@ -44,12 +44,9 @@
 				return;
 			}
 			$arr_length = mysqli_affected_rows($this->con);
+			$row = array();
 			for($i=0;$i<$arr_length;$i++){
-				$row = mysqli_fetch_assoc($result);
-			}
-			if(empty($row))
-			{
-				echo "<script>alert(\"邮箱或用户名不正确，请重新输入\");location.href=\"login.php\"</script>";
+				$row[] = mysqli_fetch_assoc($result);
 			}
 			
 			return $row;
