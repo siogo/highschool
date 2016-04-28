@@ -24,9 +24,10 @@
 	$connect_class = new connect;
 	$check_class = new check;
 
-	if(isset($username) && !empty($username)){
-		if(strpos($username,"@") !== false){
-			$result = $check_class->check_email($username);			
+	if($group == 'student'){
+		if(strpos($username, "@") !== false)
+		{
+			$result = $check_class->check_email($username,$group);			
 			if($result !== false){
 				if($check_class->check_password($result['password'], $password)){
 					setcookie("username", $username);
@@ -40,20 +41,22 @@
 				echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
 			}
 		}else{
-			if($check_class->check_username($username)){
-				if($check_class->check_password($username, $password)){
-					setcookie("username", $username);
-					setcookie("is_login", "1");
-					setcookie("group", $group);
-					echo "<script>location.href=\"home_yes.php\"</script>";
-				}else{
-					echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
-				}
+			echo "<script>alert(\"邮箱不正确，请重新输入\");location.href=\"login.php\"</script>";
+		}
+	}else if($group == 'teacher'){
+		$result = $check_class->check_email($username,$group);
+
+		if($result !== false){
+			if($check_class->check_password($result['password'], $password)){
+				setcookie("username", $username);
+				setcookie("is_login", "1");
+				setcookie("group", $group);
+				echo "<script>location.href=\"home_yes.php\"</script>";
 			}else{
 				echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
 			}
+		}else{
+			echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
 		}
-	}else{
-		echo "<script>location.href=\"login.php\";</script>";
 	}
 ?>

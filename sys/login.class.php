@@ -8,7 +8,10 @@
 			$this->connect = new connect();
 		}
 		
-		public function check_username($username){
+		public function check_username($username,$type=NULL){
+			if($type==NULL){
+				return false;
+			}
 			$result = $this->connect->select('tb_student','chinese_name',$username);
 			if(!empty($result)){
 				return true;
@@ -26,11 +29,21 @@
 			}
 		}
 		
-		public function check_email($username){			
+		public function check_email($username,$type=NULL){
+			if($type == NULL){
+				return false;
+			}
 			if(isset($username)){
+				if($type == 'teacher'){
+					$result = $this->connect->select('tb_teacher','account',$username);
+					return $result[0];
+				}
 				$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
 				if(preg_match($match, $username)){
-					$result = $this->connect->select('tb_student','email',$username);
+					if($type == 'student'){
+						$result = $this->connect->select('tb_student','email',$username);
+					}
+					
 					if($result == false){
 						return false;
 					}else{
