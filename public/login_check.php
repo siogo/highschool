@@ -33,7 +33,7 @@
 					setcookie("username", $username);
 					setcookie("is_login", "1");
 					setcookie("group", $group);
-					echo "<script>location.href=\"home_yes.php\"</script>";
+					echo "<script>location.href=\"index.php\"</script>";
 				}else{
 					echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
 				}
