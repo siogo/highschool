@@ -151,8 +151,9 @@
 			var val = $('#txt').val();
 			$.post('addliuyan.php',{content:val,pid:pid},function(data){
 				// alert(data);
-				if(data == 1){
+				if(data == '1'){
 					alert('留言成功');
+					window.location.reload(true);
 				}else{
 					alert('您未登录，请先登录');
 				}
