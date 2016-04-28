@@ -39,21 +39,21 @@
 				$query = "SELECT * FROM $tablename ORDER BY $order_by $sort";
 			}
 			$result = mysqli_query($this->con,$query);
-			if(!$result){
-				echo "查询失败，请检查参数是否正确！";
-				return;
+			if($result == false){
+				return ['msg' => '查询失败，请检查参数是否正确！'];
 			}
 			$arr_length = mysqli_affected_rows($this->con);
 			$row = array();
 			for($i=0;$i<$arr_length;$i++){
 				$row[] = mysqli_fetch_assoc($result);
 			}
-			
+			if($row == null){
+				return ['msg' => '403'];
+			}
 			return $row;
 		}
 		
 		public function insert($tablename,$name=array(),$value=array()){
-			$this->con = $this->connect_sql();
 			mysqli_query($this->con, "set character set 'utf8'");
 			mysqli_query($this->con, "set names 'utf8'");
 			if($name != null && $value != null && count($name) == count($value)){
@@ -81,18 +81,17 @@
 		}
 		
 		public function update($tablename,$column=null,$value=null,$where_column=null,$where=null){
-			$connect_mysql = $this->connect_sql();
-			mysqli_query($connect_mysql, "set character set 'utf8'");
-			mysqli_query($connect_mysql, "set names 'utf8'");
+			mysqli_query($this->con, "set character set 'utf8'");
+			mysqli_query($this->con, "set names 'utf8'");
 			if($column != null && $value != null && $where_column != null && $where != null){
 				$query = "UPDATE $tablename SET $column='".$value."' WHERE $where_column='".$where."' ";
 			}
-			$result = mysqli_query($connect_mysql,$query);
+			$result = mysqli_query($this->con,$query);
 			if(!$result){
 				echo "更新数据失败,请检查参数是否正确！";
 				return;
 			}
-			if(mysqli_affected_rows($connect_mysql) !== FALSE){
+			if(mysqli_affected_rows($this->con) !== FALSE){
 				return true;
 			}else{
 				return false;
@@ -100,24 +99,30 @@
 		}
 		
 		public function delete($tablename,$column=null,$where=null){
-			$connect_mysql = $this->connect_sql();
-			mysqli_query($connect_mysql, "set character set 'utf8'");
-			mysqli_query($connect_mysql, "set names 'utf8'");
+			mysqli_query($this->con, "set character set 'utf8'");
+			mysqli_query($this->con, "set names 'utf8'");
 			if($column != null && $where != null){
 				$query = "DELETE FROM $tablename WHERE $column='".$where."' ";
 			}else{
 				$query = "";
 			}
-			$result = mysqli_query($connect_mysql,$query);
+			$result = mysqli_query($this->con,$query);
 			if(!$result){
 				echo "删除数据失败，请检查参数是否正确！";
 				return;
 			}
-			if(mysqli_affected_rows($connect_mysql) !== FALSE){
+			if(mysqli_affected_rows($this->con) !== FALSE){
 				return true;
 			}else{
 				return false;
 			}
+		}
+		
+		public function num_rows($tablename){
+			$query = "SELECT COUNT(*) FROM $tablename";
+			$result = mysqli_query($this->con,$query);
+			$num_rows = mysqli_fetch_array($result);
+			return $num_rows[0];
 		}
 	}
 ?>
