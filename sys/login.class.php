@@ -34,7 +34,7 @@
 					if($result == false){
 						return false;
 					}else{
-						return $result;
+						return $result[0];
 					}
 				}else{
 					return false;

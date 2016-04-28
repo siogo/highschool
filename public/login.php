@@ -33,6 +33,12 @@
 						    <input type="password" name="password" placeholder="请输入密码"/>
 						</td>
 					</tr>
+					<tr>
+						<td class="tian check">
+							<input type="radio" name="group" value="teacher" />教师
+							<input type="radio" name="group" value="student" checked />学生
+						</td>
+					</tr>
 					<tr class="hang-3">
 					    <td colspan="2">
 						   <input type="submit" name="submit" value="登录"/> 

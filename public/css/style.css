@@ -21,6 +21,7 @@ body,ul,h1{
 	   width:498px;
 	   height:300px;
 	   border:1px solid #333;
+	   position:relative;
 }
 .login-setion>form>table{
 	   width:325px;
@@ -35,6 +36,7 @@ body,ul,h1{
 	padding-top:15px;
 }
 .login-setion>form>table .pp{padding-top:15px;}
+.login-setion>form>table .check{position:absolute;left:34%;}
 .login-setion>form>table .tian input[type=text],.login-setion>form>table .tian input[type=password]{
 	width:180px; 
 	height:20px;
