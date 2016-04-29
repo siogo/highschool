@@ -39,16 +39,11 @@
 				$query = "SELECT * FROM $tablename ORDER BY $order_by $sort";
 			}
 			$result = mysqli_query($this->con,$query);
-			if($result == false){
-				return ['msg' => '查询失败，请检查参数是否正确！'];
-			}
+
 			$arr_length = mysqli_affected_rows($this->con);
 			$row = array();
 			for($i=0;$i<$arr_length;$i++){
 				$row[] = mysqli_fetch_assoc($result);
-			}
-			if($row == null){
-				return ['msg' => '403'];
 			}
 			return $row;
 		}

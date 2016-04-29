@@ -36,7 +36,8 @@
 			if(isset($username)){
 				if($type == 'teacher'){
 					$result = $this->connect->select('tb_teacher','account',$username);		
-					if($result['msg'] == 403){
+					var_dump($result);
+					if($result == false){
 						return false;
 					}else{
 						return $result[0];
@@ -48,7 +49,7 @@
 						$result = $this->connect->select('tb_student','email',$username);
 					}
 					
-					if($result['msg'] == 403){
+					if($result == false){
 						return false;
 					}else{
 						return $result[0];
