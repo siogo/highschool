@@ -91,41 +91,132 @@
 				<div class="plzs">
 				    <?php  
 				    	$pid = $_GET['pid'];
-				    	$esult = mysql_query("SELECT * FROM tb_message WHERE para_id = ".$pid);
+				    	$esult = mysql_query("SELECT * FROM tb_message WHERE para_id = ".$pid." ORDER BY message_publish DESC");
+				    	
 				    	while ($row = mysql_fetch_array($esult)) {
-				    		$uid = $row['user_id'];
-				    		// 查询头像
-				    		// $r = mysql_query("SELECT * FROM tb_student WHERE ")
-				    		echo "<div class=\"plr\">";
-				    		echo 	"<img src=\"img/tx.png\"/>";
-				    		echo "</div>";
-				    		echo "<div class=\"plnr\">";
-				    		echo 	"<div class=\"z\">";
-				    		echo 		"<span>小新：</span>".$row['message_content']; 
-				    		echo 	"</div>";
-				    		echo 	"<div class=\"time\">";
-				    		echo 		"2016-11-21 <img src=\"img/tl.png\"/>";
-				    		echo 	"</div>";
-				    		echo "</div>";
-				    		echo "<br />";
+
+				    		if($row['child'] == 1){
+				    			$uid = $row['user_id'];
+				    			$floor1 = $uid;
+				    			//$parent_id = $row['parent_id'];
+				    			$result = mysql_query("SELECT * FROM tb_message WHERE user_id = ".$uid." AND child=0");
+				    			$result_row = mysql_fetch_array($result);
+				    			if($result_row != false){
+				    				$html = '
+			    						<div id="child">
+							    			<div class="plr">
+							    		 		<img src="img/tx.png"/>
+							    		 	</div>
+							    			<div class="plnr">
+							    		 		<div class="z">
+							    		 			<span>小新：</span>'.$result_row['message_content'].'
+							    		 		</div>
+							    		 		<div class="time">
+							    		 			'.date('Y-m-d h:i:s',$result_row['message_publish']).'
+							    		 		</div>
+							    			</div>
+							    		</div>
+			    					';
+				    			}				    			
+				    			if($result_row == false){
+				    				while(1){
+				    					$floor2 = $uid;
+				    					$p = mysql_query("SELECT * FROM tb_message WHERE parent_id = ".$uid." AND child=1");				    					
+			    						$p_result = mysql_fetch_array($p);			    						
+					    				if($p_result != false){
+					    					$uid = $p_result['user_id'];					    					
+						    				$html = '
+					    						<div id="child">
+									    			<div class="plr">
+									    		 		<img src="img/tx.png"/>
+									    		 	</div>
+									    			<div class="plnr">
+									    		 		<div class="z">
+									    		 			<span>小新：</span>'.$p_result['message_content'].'
+									    		 		</div>
+									    		 		<div class="time">
+									    		 			'.date('Y-m-d h:i:s',$p_result['message_publish']).'
+									    		 		</div>
+									    			</div>
+									    		</div>
+					    					';						    				
+				    					}else{
+				    						$p = mysql_query("SELECT * FROM tb_message WHERE user_id = ".$uid." AND child=0");				    						
+				    						$p_result = mysql_fetch_array($p);				    					
+						    				if($p_result != false){
+							    				$html .= '
+						    						<div id="child">
+										    			<div class="plr">
+										    		 		<img src="img/tx.png"/>
+										    		 	</div>
+										    			<div class="plnr">
+										    		 		<div class="z">
+										    		 			<span>小新：</span>'.$p_result['message_content'].'
+										    		 		</div>
+										    		 		<div class="time">
+										    		 			'.date('Y-m-d h:i:s',$p_result['message_publish']).'
+										    		 		</div>
+										    			</div>
+										    		</div>
+						    					';
+				    							break;
+				    						}			    				
+				    					}				    					
+				    				}
+				    			}
+				    			echo '
+				    				<div class="border_co">				    			
+										<div class="plzs">
+										    <div class="plr">
+											    <img src="img/tx.png"/>
+											</div>
+											<div class="plnr">
+											    <div class="z">
+												     <span>小新：</span>'.$row['message_content'].'
+												</div>
+												<div class="time">
+												     '.date('Y-m-d h:i:s',$row['message_publish']).'<a href="javascript:void(0);" id="child_message" onclick="message(this);"><img src="img/tl.png"/></a>
+												</div>
+											</div>
+										</div>																				
+										'.$html.'
+									</div><br />
+				    			';
+				    		}else
+				    		{
+				    			$uid = $row['user_id'];
+					    		// 查询头像
+					    		// $r = mysql_query("SELECT * FROM tb_student WHERE ")
+					    		echo "<div class=\"border_co\">";
+					    		echo "<div class=\"plr\">";
+					    		echo 	"<img src=\"img/tx.png\"/>";
+					    		echo "</div>";
+					    		echo "<div class=\"plnr\">";
+					    		echo 	"<div class=\"z\">";
+					    		echo 		"<span>小新：</span>".$row['message_content']; 
+					    		echo 	"</div>";
+					    		echo 	"<div class=\"time\">";
+					    		echo 		"".date('Y-m-d h:i:s',$row['message_publish'])." <a href=\"javascript:void(0);\" id=\"child_message\" onclick=\"message(this);\"><img src=\"img/tl.png\"/></a>";
+					    		echo 	"</div>";
+					    		echo "</div>";
+
+					    		echo "</div>";
+					    		echo "<br />";
+				    		}				    		
 				    	}	
 				    ?>
 				</div>
-				<div class="plzs">
-				    <div class="plr">
-					    <img src="img/tx_d.png"/>
-					</div>
-					<div class="plnr">
-					    <div class="z">
-						     <span>小新：</span>的确很难好看！！！
-						</div>
-						<div class="time">
-						     2016-11-21 <img src="img/tl.png"/>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>	    
+	</div>
+	<div id="child_input" class="hide">
+		<div style="background-color:#f0d">
+			<p>留言板</p>
+			<textarea name="chile_message" cols="50" rows="5" id="chile_message" placeholder="请输入留言内容......" autofocus="autofocus"></textarea>
+			<input type="button" name="cancel" id="cancel" value="关闭" />
+			<input type="button" name="up" id="up" value="提交" />
+		</div>
 	</div>
 	<!-- <header>header</header>
 	<section>section</section> -->
@@ -160,6 +251,24 @@
 			});
 		});
 	});
+	// var child_message = document.getElementById('child_message');
+	// child_message.onclick = function(){
+	// 	alert(111);
+	// };
+	function message(e){		
+		var x = document.documentElement.scrollLeft || document.body.scrollLeft;		
+		var y = document.documentElement.scrollTop || document.body.scrollTop;
+		var child_input = document.getElementById('child_input');
+		child_input.className='show';
+		child_input.style.left=(x+480)+'px';
+		child_input.style.top=(y+300)+'px';
+		
+		var oCancel = document.getElementById('cancel');
+		oCancel.onclick = function(){
+			child_input.className='hide';
+		};
+		
+	}
 </script>
 </body>
 </html>

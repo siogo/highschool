@@ -821,3 +821,19 @@ footer{
 .zxdy .fsk{margin-top:35px;}
 .zxdy .fsk input[type=text]{width:900px;height:30px;border:1px solid #999;outline:none;padding-left:8px}
 .zxdy .fsk input[type=button]{height:30px;width:80px;letter-spacing:5px}
+
+.border_co{
+	border:1px solid black;
+	padding: 4px 0 4px 0;
+	background-color: #ccc;
+	box-shadow: 4px 4px #AAA;
+	border-radius: 8px 8px;
+}
+#child_input{
+	position: absolute;
+	left:0;	
+	top:0;
+}
+#child{position:relative;left:50px;padding-top:8px;}
+.hide{display:none;}
+.show{display:block;}
