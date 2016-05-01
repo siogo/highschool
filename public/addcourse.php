@@ -12,7 +12,8 @@
 	$time = $_POST['time'];
 	$jieshu = $_POST['jieshu'];	
 	$flag = '0';
-	$teacher = '1';    //找教师的id;
+	//$teacher_id = '1';    //找教师的id;
+	$teacher = $_COOKIE['id'];
 
 	if($course_name&&$course_type&&$credits&&$classroom&&$time&&$jieshu){
 		$result = mysql_query("SELECT course_name FROM tb_course WHERE teacher = '".$teacher."'");
@@ -30,7 +31,7 @@
 			}
 		}
 		if($flag == '0'){
-			mysql_query("INSERT into tb_course (course_name,course_type,credits,classroom,week,ctime) VALUES ('".$course_name."','".$course_type."','".$credits."','".$classroom."','".$time."','".$jieshu."')");
+			mysql_query("INSERT into tb_course (course_name,course_type,credits,classroom,week,ctime,teacher) VALUES ('".$course_name."','".$course_type."','".$credits."','".$classroom."','".$time."','".$jieshu."','".$teacher."')");
 			echo '1';      //添加成功
 		}
 	}else{

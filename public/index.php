@@ -3,6 +3,25 @@
 	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
 	mysql_select_db("highschool");
 	mysql_query("set names 'utf8'");
+
+	if(isset($_COOKIE['is_login'])){
+		$group = $_COOKIE['group'];
+		$username = $_COOKIE['username'];
+		if($group == 'student'){
+			$r = mysql_query("SELECT * FROM tb_student WHERE email = '".$username."'");
+			while ($ra = mysql_fetch_array($r)) {
+				setcookie("id",$ra['student_id']);
+				// $count = $ra['count']+1;
+				// mysql_query("UPDATE tb_student SET count = '".$count."' WHERE email = '".$username."'");
+			}
+		}else{
+			$r = mysql_query("SELECT * FROM tb_teacher WHERE account = '".$username."'");
+			while ($ra = mysql_fetch_array($r)) {
+				setcookie("id",$ra['teacher_id']);
+			}
+		}
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -28,8 +47,8 @@
 			<nav class="link">
 			    <ul class="o-nav">
 			        <li class="active"><a href="index.php" class="s-bc">首页</a></li>
-				    <li><a href="./addarticle.php" class="f-bc">发布文章</a></li>
-				    <li><a href="###" class="d-bc">在线答疑</a></li>
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>
+				    <!-- <li><a href="###" class="d-bc">在线答疑</a></li> -->
 				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
 			    </ul>
 				<div class="dz">

@@ -17,7 +17,18 @@
 				    <li><a href="###" class="w-bc">文章赏析</a></li>
 			    </ul>
 				<div class="dz">
-				    <div class="dlz">Hi:<span>张三哈</span><a href="#">[退出]</a></div>
+				    <ul>
+					<?php
+						if(isset($_COOKIE["username"])){
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						}else{
+					?>
+					   <li><a href="login.php">登录</a></li>
+					   <li><a href="register.php">注册</a></li>
+					<?php
+						}
+					?>
+					</ul>
 				</div>
 			</nav>
 		</div>
@@ -28,7 +39,7 @@
 			    当前位置：我的课表
 			</div>
 			<div class="return">
-			    <a href="#">返回</a>
+			    <a href="javascript:history.go(-1);location.reload()">返回</a>
 			</div>
 			<div class="course">
 			    <div class="course-1">

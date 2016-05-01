@@ -11,13 +11,24 @@
 		    <h1 class="logo">师生互动平台</h1>
 			<nav class="link">
 			    <ul class="o-nav">
-			        <li class="active"><a href="###" class="s-bc">首页</a></li>
-				    <li><a href="###" class="f-bc">发布文章</a></li>
-				    <li><a href="###" class="d-bc">在线答疑</a></li>
-				    <li><a href="###" class="w-bc">文章赏析</a></li>
+			        <li class="active"><a href="index.php" class="s-bc">首页</a></li>
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>
+				    <!-- <li><a href="###" class="d-bc">在线答疑</a></li> -->
+				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
 			    </ul>
 				<div class="dz">
-				    <div class="dlz">Hi:<span>张三哈</span><a href="#">[退出]</a></div>
+				    <ul>
+					<?php
+						if(isset($_COOKIE["username"])){
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\">".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						}else{
+					?>
+					   <li><a href="login.php">登录</a></li>
+					   <li><a href="register.php">注册</a></li>
+					<?php
+						}
+					?>
+					</ul>
 				</div>
 			</nav>
 		</div>
@@ -26,23 +37,24 @@
 	<div id="content" style="padding:0;background:#f1f0ec">
 	    <div class="aside" style="float:left">
 		    <div class="Tx">
-			    <img src="img/Tulip.jpg"/>
+			    <img id="headphoto" src="##"/>
+			    <span id="group" style="display: none;"><?php echo $_COOKIE['group'] ?></span>
 			</div>
 			<div class="Xx">
-			    <span class="grxx"><a href="###">我的信息</a></span>&nbsp;&nbsp;
-				<span><a href="###">我的成绩</a></span>
+			    <span class="grxx"><a style="cursor:pointer" class="active">我的信息</a></span>&nbsp;&nbsp;
+				<span class="stu"><a href="./myscore.php">我的成绩</a></span>
 			</div>
 			<div class="Xx">
-			    <span><a href="###">我的课程</a></span>&nbsp;&nbsp;
-				<span><a href="###">我的作业</a></span>
+			    <span class="stu"><a href="./myclass.php">我的课程</a></span>&nbsp;&nbsp;
+				<span class="stu"><a href="./myhomework.php">我的作业</a></span>
 			</div>
 			<div class="Xx">
-			    <span><a href="###"  class="active">发布课程</a></span>&nbsp;&nbsp;
-				<span><a href="###">管理学生</a></span>
+			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;
+				<span class="teac"><a href="###">管理学生</a></span>
 			</div>
 			<div class="Xx">
-			    <span><a href="###">发布作业</a></span>&nbsp;&nbsp;
-				<span><a href="###">统计信息</a></span>
+			    <span class="teac"><a href="addwork.php">发布作业</a></span>&nbsp;&nbsp;
+				<span class="teac"><a href="###">统计信息</a></span>
 			</div>
 		</div>
 		
@@ -52,7 +64,7 @@
 				    当前页面：发布课程
 				</div>
 			    <div class="return-2">
-			        <a href="#" style="color:#333">返回</a>
+			        <a href="javascript:history.go(-1);location.reload()" style="color:#333">返回</a>
 			    </div>
 			</div>
 			<div class="fbkc">
@@ -111,6 +123,16 @@
 <script src="js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var user = $('#user').text();
+		$('#headphoto').attr('src','photo_head/'+user+"/head.png");
+
+		var group = $('#group').text();
+		if(group == 'student'){
+			$('.teac').hide();
+		}else{
+			$('.stu').hide();
+		}
+		
 		$('#btn').click(function(){
 			var course_name = $('#course_name').val();
 			var course_type = $('#course_type input[name="type"]:checked').val();
@@ -125,6 +147,7 @@
 						break;
 					case '1':
 						alert("添加成功");
+						window.location.href = "http://127.0.0.1/bs/highschool/public/setinfo.php";
 						break;
 					case '2':
 						alert("添加失败(课程重复)");

@@ -16,10 +16,10 @@
 		    <h1 class="logo">师生互动平台</h1>
 			<nav class="link">
 			    <ul class="o-nav">
-			        <li class="active"><a href="###" class="s-bc">首页</a></li>
-				    <li><a href="###" class="f-bc">发布文章</a></li>
+			        <li class="active"><a href="index.php" class="s-bc">首页</a></li>
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>
 				    <li><a href="###" class="d-bc">在线答疑</a></li>
-				    <li><a href="###" class="w-bc">文章赏析</a></li>
+				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
 			    </ul>
 				<div class="dz">
 					<ul>
@@ -43,22 +43,23 @@
 	    <div class="aside" style="float:left">
 		    <div class="Tx">
 			    <img id="headphoto" src="##"/>
+			    <span id="group" style="display: none;"><?php echo $_COOKIE['group'] ?></span>
 			</div>
 			<div class="Xx">
 			    <span class="grxx"><a style="cursor:pointer" class="active">我的信息</a></span>&nbsp;&nbsp;
-				<span><a href="./myscore.php">我的成绩</a></span>
+				<span class="stu"><a href="./myscore.php">我的成绩</a></span>
 			</div>
 			<div class="Xx">
-			    <span><a href="./myclass.php">我的课程</a></span>&nbsp;&nbsp;
-				<span><a href="./myhomework.php">我的作业</a></span>
+			    <span class="stu"><a href="./myclass.php">我的课程</a></span>&nbsp;&nbsp;
+				<span class="stu"><a href="./myhomework.php">我的作业</a></span>
 			</div>
 			<div class="Xx">
-			    <span><a href="###">发布课程</a></span>&nbsp;&nbsp;
-				<span><a href="###">管理学生</a></span>
+			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;
+				<span class="teac"><a href="###">管理学生</a></span>
 			</div>
 			<div class="Xx">
-			    <span><a href="###">发布作业</a></span>&nbsp;&nbsp;
-				<span><a href="###">统计信息</a></span>
+			    <span class="teac"><a href="addwork.php">发布作业</a></span>&nbsp;&nbsp;
+				<span class="teac"><a href="###">统计信息</a></span>
 			</div>
 		</div>
 
@@ -263,6 +264,14 @@
 <script src="js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		//根据group显示功能块
+		var group = $('#group').text();
+		if(group == 'student'){
+			$('.teac').hide();
+		}else{
+			$('.stu').hide();
+		}
+
 		//抓头像
 		var user = $('#user').text();
 		$('#headphoto').attr('src','photo_head/'+user+"/head.png");
@@ -363,11 +372,12 @@
 
 		//修改个人信息
 		$('#changemsg').click(function(){
+			var group = $('#group').text();
 			var nickname = $('#nickname').val();
 			var tel = $('#tel').val();
 			var sex = $('.xs-1').find('input:radio:checked').val();
 			var text = $('#txt').val();
-			$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg'},function(data){
+			$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
 				if(data == '1'){
 					alert("修改成功！");
 					$('.setion-2').fadeIn();
