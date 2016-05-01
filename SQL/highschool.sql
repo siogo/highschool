@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-04-25 13:43:00
+Date: 2016-05-01 21:30:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,7 +48,7 @@ CREATE TABLE `tb_course` (
   `ctime` varchar(20) DEFAULT NULL,
   `teacher` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`course_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_course
@@ -62,6 +62,9 @@ INSERT INTO `tb_course` VALUES ('7', 'HTML5程序设计', 'take', '3', '二教21
 INSERT INTO `tb_course` VALUES ('8', 'jquery程序设计', 'take', '3', '二教101', '星期三', '4', '4');
 INSERT INTO `tb_course` VALUES ('10', 'jquery程序设计', 'take', '3', '二教301', '星期一', '1', '1');
 INSERT INTO `tb_course` VALUES ('13', '装逼设计', 'take', '3', '二教302', '星期一', '1', '1');
+INSERT INTO `tb_course` VALUES ('18', 'py交易', 'compulsory', '6', '二教505', '星期五', '5', '3');
+INSERT INTO `tb_course` VALUES ('19', 'yd交易', 'compulsory', '4', '二教222', '星期二', '1', '3');
+INSERT INTO `tb_course` VALUES ('20', 'cnm', 'compulsory', '4', '43', '星期三', '1', '3');
 
 -- ----------------------------
 -- Table structure for tb_message
@@ -74,14 +77,17 @@ CREATE TABLE `tb_message` (
   `message_good` int(11) DEFAULT NULL,
   `para_id` int(10) DEFAULT NULL,
   `user_id` int(10) DEFAULT NULL,
+  `child` tinyint(1) unsigned zerofill DEFAULT '0',
+  `parent_id` int(20) unsigned zerofill DEFAULT '00000000000000000000',
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_message
 -- ----------------------------
-INSERT INTO `tb_message` VALUES ('10', '的确很难好看的确很难好看', '1460704272', null, '22', '1');
-INSERT INTO `tb_message` VALUES ('11', '和他人呵呵', '1460704683', null, '22', '1');
+INSERT INTO `tb_message` VALUES ('15', '这是第一条', '1461942011', null, '22', '1', '0', '00000000000000000000');
+INSERT INTO `tb_message` VALUES ('16', '这是第二条', '1461942077', null, '22', '1', '1', '00000000000000000002');
+INSERT INTO `tb_message` VALUES ('17', '这是第三条', '1461942249', null, '22', '1', '1', '00000000000000000003');
 
 -- ----------------------------
 -- Table structure for tb_onlinestu
@@ -96,7 +102,7 @@ CREATE TABLE `tb_onlinestu` (
   `online_endtime` datetime DEFAULT NULL,
   `course_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`online_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_onlinestu
@@ -108,6 +114,10 @@ INSERT INTO `tb_onlinestu` VALUES ('6', '1', '证明bug是个大傻逼', null, n
 INSERT INTO `tb_onlinestu` VALUES ('7', '1', '证明bug是个超级大傻逼', null, null, null, null);
 INSERT INTO `tb_onlinestu` VALUES ('9', '1', '二重积分与三重积分', null, null, null, '6');
 INSERT INTO `tb_onlinestu` VALUES ('10', '1', 'HTML网页设计', null, null, null, '10');
+INSERT INTO `tb_onlinestu` VALUES ('11', '1', '高等数学', null, null, null, '6');
+INSERT INTO `tb_onlinestu` VALUES ('12', '1', '高等数学22', null, null, null, '6');
+INSERT INTO `tb_onlinestu` VALUES ('13', '1', '装逼设计', null, null, null, '6');
+INSERT INTO `tb_onlinestu` VALUES ('14', '1', '嵌入式设计', null, null, null, '10');
 
 -- ----------------------------
 -- Table structure for tb_paragraph
@@ -164,21 +174,22 @@ CREATE TABLE `tb_student` (
   `tel` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
+  `count` int(5) DEFAULT '0',
   PRIMARY KEY (`student_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_student
 -- ----------------------------
-INSERT INTO `tb_student` VALUES ('1', null, 'bae5e3208a3c700e3db642b6631e95b9', 'bug', 'unknown', '15680328888', '379044496@qq.com', '这是一个测试');
-INSERT INTO `tb_student` VALUES ('2', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '13912341234', '32297989@qq.com', null);
-INSERT INTO `tb_student` VALUES ('3', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '12341234123', '123456@qq.com', null);
-INSERT INTO `tb_student` VALUES ('4', null, '5ff71a9f91dd001f05188c4bd46a1d01', null, 'male', '1235454565', '12345688@qq.com', null);
-INSERT INTO `tb_student` VALUES ('5', null, '5ff71a9f91dd001f05188c4bd46a1d01', null, 'male', '124124343', 'root@qq.com', null);
-INSERT INTO `tb_student` VALUES ('6', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '1234342341', '3456789@qq.com', null);
-INSERT INTO `tb_student` VALUES ('7', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '12344444321', '323333333@qq.com', null);
-INSERT INTO `tb_student` VALUES ('8', null, '25d55ad283aa400af464c76d713c07ad', null, 'male', '123456789098', '3233333@qq.com', null);
-INSERT INTO `tb_student` VALUES ('9', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '12345678765', '888888@qq.com', null);
+INSERT INTO `tb_student` VALUES ('1', null, 'bae5e3208a3c700e3db642b6631e95b9', 'bug', 'unknown', '15680328888', '379044496@qq.com', '这是一个测试', '2');
+INSERT INTO `tb_student` VALUES ('2', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '13912341234', '32297989@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('3', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '12341234123', '123456@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('4', null, '5ff71a9f91dd001f05188c4bd46a1d01', null, 'male', '1235454565', '12345688@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('5', null, '5ff71a9f91dd001f05188c4bd46a1d01', null, 'male', '124124343', 'root@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('6', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '1234342341', '3456789@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('7', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '12344444321', '323333333@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('8', null, '25d55ad283aa400af464c76d713c07ad', null, 'male', '123456789098', '3233333@qq.com', null, '0');
+INSERT INTO `tb_student` VALUES ('9', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', null, 'male', '12345678765', '888888@qq.com', null, '0');
 
 -- ----------------------------
 -- Table structure for tb_teacher
@@ -186,18 +197,19 @@ INSERT INTO `tb_student` VALUES ('9', null, '84a2c1c75cdfd10a1f5fc5ee27f1d069', 
 DROP TABLE IF EXISTS `tb_teacher`;
 CREATE TABLE `tb_teacher` (
   `account` char(255) NOT NULL,
-  `password` char(255) NOT NULL,
+  `password` char(255) DEFAULT NULL,
   `teacher_id` char(255) NOT NULL,
-  `chinese_name` varchar(255) NOT NULL,
-  `sex` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `tel` varchar(255) NOT NULL,
-  `remark` varchar(255) NOT NULL
+  `chinese_name` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `tel` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `count` int(5) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_teacher
 -- ----------------------------
-INSERT INTO `tb_teacher` VALUES ('zztest', 'bae5e3208a3c700e3db642b6631e95b9', '1', '杨铸', '', '', '', '');
-INSERT INTO `tb_teacher` VALUES ('yangjian', 'bae5e3208a3c700e3db642b6631e95b9', '3', '杨剑', '', '', '', '');
-INSERT INTO `tb_teacher` VALUES ('yangjuhua', 'bae5e3208a3c700e3db642b6631e95b9', '4', '杨菊花', '', '', '', '');
+INSERT INTO `tb_teacher` VALUES ('zztest', 'bae5e3208a3c700e3db642b6631e95b9', '1', '杨铸', '', '', '', '', '0');
+INSERT INTO `tb_teacher` VALUES ('yangjian', 'bae5e3208a3c700e3db642b6631e95b9', '3', 'dannis', 'male', '', '13999999999', '我是一个老师', '1');
+INSERT INTO `tb_teacher` VALUES ('yangjuhua', 'bae5e3208a3c700e3db642b6631e95b9', '4', '杨菊花', '', '', '', '', '0');
