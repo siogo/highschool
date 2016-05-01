@@ -3,24 +3,6 @@
 	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
 	mysql_select_db("highschool");
 	mysql_query("set names 'utf8'");
-
-	if(isset($_COOKIE['is_login'])){
-		$group = $_COOKIE['group'];
-		$username = $_COOKIE['username'];
-		if($group == 'student'){
-			$r = mysql_query("SELECT * FROM tb_student WHERE email = '".$username."'");
-			while ($ra = mysql_fetch_array($r)) {
-				setcookie("id",$ra['student_id']);
-				// $count = $ra['count']+1;
-				// mysql_query("UPDATE tb_student SET count = '".$count."' WHERE email = '".$username."'");
-			}
-		}else{
-			$r = mysql_query("SELECT * FROM tb_teacher WHERE account = '".$username."'");
-			while ($ra = mysql_fetch_array($r)) {
-				setcookie("id",$ra['teacher_id']);
-			}
-		}
-	}
 	
 ?>
 <!DOCTYPE html>
