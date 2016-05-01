@@ -78,11 +78,9 @@
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var json = JSON.parse(xhr.responseText);				
 				if(json.success == 1) {
-					alert(json.msg);
 					window.location.href='index.php';
 				}else {
 					alert(json.msg);
-					//window.location.href='login.php';
 				}
 			}
 		};

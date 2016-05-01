@@ -40,7 +40,7 @@
 					if($result == false){
 						return false;
 					}else{
-						return $result;
+						return $result[0];
 					}				
 				}
 				$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
@@ -52,7 +52,7 @@
 					if($result == false){
 						return false;
 					}else{
-						return $result;
+						return $result[0];
 					}
 				}else{
 					return false;

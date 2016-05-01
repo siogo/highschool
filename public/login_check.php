@@ -29,11 +29,12 @@
 		{
 			$result = $check_class->check_email($username,$group);
 			if($result !== false){
-				if($check_class->check_password($result[0]['password'], $password)){
+				if($check_class->check_password($result['password'], $password)){
 					setcookie("username", $username);
 					setcookie("is_login", "1");
 					setcookie("group", $group);
-					setcookie("id", $result[0]['student_id']);
+					setcookie("id", $result['student_id']);
+					setcookie("count", ++$result['count']);
 					echo '{"success":"1","msg":"登录成功"}';
 				}else{
 					echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
@@ -47,11 +48,12 @@
 	}else if($group == 'teacher'){
 		$result = $check_class->check_email($username,$group);
 		if($result !== false){
-			if($check_class->check_password($result[0]['password'], $password)){
+			if($check_class->check_password($result['password'], $password)){
 				setcookie("username", $username);
 				setcookie("is_login", "1");
 				setcookie("group", $group);
-				setcookie("id", $result[0]['teacher_id']);
+				setcookie("id", $result['teacher_id']);
+				setcookie("count", ++$result['count']);
 				echo '{"success":"1","msg":"登录成功"}';
 			}else{
 				echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
