@@ -70,13 +70,25 @@
 							</td>
 						</tr>
 						<tr>
+						    <td class="bt">
+							    <div style="margin-bottom:20px">类型</div>  
+							</td>
+						    <td>
+							    <div class="flei"> 
+								    <select name="list" id="list">
+                                        <option value="wenxue">视频</option>
+                                        <option value="shuxue">文章</option>
+                                    </select>
+								</div>
+							</td>
+						</tr>
+						<tr>
 						    <td class="bt" valign="top">
 							    <div>文章正文</div>
 							</td>
 							<td class="nr-2">
 							    <div>
 								    <textarea id="content1"></textarea>
-
 								</div>
 							</td>
 						</tr>
