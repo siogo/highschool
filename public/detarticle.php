@@ -93,16 +93,15 @@
 				    	$pid = $_GET['pid'];
 				    	$esult = mysql_query("SELECT * FROM tb_message WHERE para_id = ".$pid." ORDER BY message_publish DESC");
 				    	
-				    	while ($row = mysql_fetch_array($esult)) {
-
+				    	while ($row = mysql_fetch_array($esult)) {				    		
 				    		if($row['child'] == 1){
-				    			$uid = $row['user_id'];
-				    			$floor1 = $uid;
+				    			$html = '';
+				    			$uid = $row['user_id'];				    			
 				    			//$parent_id = $row['parent_id'];
 				    			$result = mysql_query("SELECT * FROM tb_message WHERE user_id = ".$uid." AND child=0");
-				    			$result_row = mysql_fetch_array($result);
+				    			$result_row = mysql_fetch_array($result);				    			
 				    			if($result_row != false){
-				    				$html = '
+				    				$html .= '
 			    						<div id="child">
 							    			<div class="plr">
 							    		 		<img src="img/tx.png"/>
@@ -117,15 +116,14 @@
 							    			</div>
 							    		</div>
 			    					';
-				    			}				    			
-				    			if($result_row == false){
-				    				while(1){
-				    					$floor2 = $uid;
+				    			}
+				    			if($result_row == false){				    				
+				    				while(1){				    									    					
 				    					$p = mysql_query("SELECT * FROM tb_message WHERE parent_id = ".$uid." AND child=1");				    					
 			    						$p_result = mysql_fetch_array($p);			    						
 					    				if($p_result != false){
 					    					$uid = $p_result['user_id'];					    					
-						    				$html = '
+						    				$html .= '
 					    						<div id="child">
 									    			<div class="plr">
 									    		 		<img src="img/tx.png"/>
@@ -138,7 +136,7 @@
 									    		 			'.date('Y-m-d h:i:s',$p_result['message_publish']).'
 									    		 		</div>
 									    			</div>
-									    		</div>
+									    		</div>									    		
 					    					';						    				
 				    					}else{
 				    						$p = mysql_query("SELECT * FROM tb_message WHERE user_id = ".$uid." AND child=0");				    						

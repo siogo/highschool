@@ -35,12 +35,12 @@
 			}
 			if(isset($username)){
 				if($type == 'teacher'){
-					$result = $this->connect->select('tb_teacher','account',$username);		
-					var_dump($result);
+					$result = $this->connect->select('tb_teacher','account',$username);
+
 					if($result == false){
 						return false;
 					}else{
-						return $result[0];
+						return $result;
 					}				
 				}
 				$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
@@ -52,7 +52,7 @@
 					if($result == false){
 						return false;
 					}else{
-						return $result[0];
+						return $result;
 					}
 				}else{
 					return false;

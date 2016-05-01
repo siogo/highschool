@@ -3,7 +3,7 @@
 	include "../sys/login.class.php";
 
 	session_start();	
-	
+
 	if(isset($_POST["username"])){
 		$username = htmlspecialchars($_POST["username"]);
 		$_SESSION['username'] = $username;
@@ -27,36 +27,37 @@
 	if($group == 'student'){
 		if(strpos($username, "@") !== false)
 		{
-			$result = $check_class->check_email($username,$group);			
+			$result = $check_class->check_email($username,$group);
 			if($result !== false){
-				if($check_class->check_password($result['password'], $password)){
+				if($check_class->check_password($result[0]['password'], $password)){
 					setcookie("username", $username);
 					setcookie("is_login", "1");
 					setcookie("group", $group);
-					echo "<script>location.href=\"index.php\"</script>";
+					setcookie("id", $result[0]['student_id']);
+					echo '{"success":"1","msg":"登录成功"}';
 				}else{
-					echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
+					echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
 				}
 			}else{
-				echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
+				echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
 			}
 		}else{
-			echo "<script>alert(\"邮箱不正确，请重新输入\");location.href=\"login.php\"</script>";
+			echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
 		}
 	}else if($group == 'teacher'){
 		$result = $check_class->check_email($username,$group);
-
 		if($result !== false){
-			if($check_class->check_password($result['password'], $password)){
+			if($check_class->check_password($result[0]['password'], $password)){
 				setcookie("username", $username);
 				setcookie("is_login", "1");
 				setcookie("group", $group);
-				echo "<script>location.href=\"home_yes.php\"</script>";
+				setcookie("id", $result[0]['teacher_id']);
+				echo '{"success":"1","msg":"登录成功"}';
 			}else{
-				echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
+				echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
 			}
 		}else{
-			echo "<script>alert(\"邮箱或用户名或密码不正确，请重新输入\");location.href=\"login.php\"</script>";
+			echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
 		}
 	}
 ?>
