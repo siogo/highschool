@@ -35,23 +35,25 @@
 			}
 			if(isset($username)){
 				if($type == 'teacher'){
-					$result = $this->connect->select('tb_teacher','account',$username);
+					$result = $this->connect->select('tb_teacher','account',$username);					
 
 					if($result == false){
 						return false;
 					}else{
+						$this->connect->update('tb_teacher','count',++$result[0]['count'],'account',$username);
 						return $result[0];
 					}				
 				}
 				$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
 				if(preg_match($match, $username)){
 					if($type == 'student'){
-						$result = $this->connect->select('tb_student','email',$username);
+						$result = $this->connect->select('tb_student','email',$username);						
 					}
 					
 					if($result == false){
 						return false;
 					}else{
+						$this->connect->update('tb_student','count',++$result[0]['count'],'email',$username);
 						return $result[0];
 					}
 				}else{
