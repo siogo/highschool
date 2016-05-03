@@ -21,7 +21,6 @@ body,ul,h1{
 	   width:498px;
 	   height:300px;
 	   border:1px solid #333;
-	   position:relative;
 }
 .login-setion>form>table{
 	   width:325px;
@@ -36,7 +35,6 @@ body,ul,h1{
 	padding-top:15px;
 }
 .login-setion>form>table .pp{padding-top:15px;}
-.login-setion>form>table .check{position:absolute;left:34%;}
 .login-setion>form>table .tian input[type=text],.login-setion>form>table .tian input[type=password]{
 	width:180px; 
 	height:20px;
@@ -196,7 +194,6 @@ body,ul,h1{
 .wzxqk .jt-article .tu{width:980px;height:400px;overflow:hidden;}
 .wzxqk .jt-article .tu>img{width:980px;}
 .wzxqk .jt-article  .wznr>p{font-size:18px !important;line-height:25px !important;letter-spacing:2px !important;}
-.wzxqk .jt-article  .wznr>pre{font-size:18px !important;line-height:25px !important;letter-spacing:2px !important;}
 .wzxqk .jt-article  .wznr{margin-bottom:20px;}
 .wzxqk .jt-article .dzan{color:#f00;font-size:18px;letter-spacing:1px;margin-bottom:10px;}
 .wzxqk .jt-article .dzan>a>img{width:30px;}
@@ -204,7 +201,7 @@ body,ul,h1{
 .wzxqk .jt-article .pl>input[type=text]{width:910px;height:30px;border:1px solid #999;}
 .wzxqk .jt-article .pl>input[type=button]{background:url(../img/pl.png) no-repeat;background-size:35px;vertical-align:middle;width:40px;height:30px;margin-left:10px;}
 .wzxqk .jt-article .plzs .plr,.wzxqk .jt-article .plnr{display:inline-block;font-size:18px;color:#666;}
-.wzxqk .jt-article .plzs .plr>img{width:60px;vertical-align:bottom;border-radius:10px;padding: 2px;}
+.wzxqk .jt-article .plzs .plr>img{width:60px;vertical-align:bottom}
 .wzxqk .jt-article .plnr{margin-left:10px}
 .wzxqk .jt-article .plnr .z>span{color:#f00;}
 .wzxqk .jt-article .plnr .time>img{width:30px;vertical-align:middle;}
@@ -353,7 +350,6 @@ a{text-decoration:none;color:#333}
 		color:#eee;
 		line-height:25px;
 		margin-left:13px;
-		position:relative;
 }
 #header .dz>ul>li>a{
 	display:block;
@@ -363,8 +359,8 @@ a{text-decoration:none;color:#333}
 	color:#a6aaa8;
 	letter-spacing:2px;
 }
-#header .dz .dlz{color:#000;letter-spacing:1px;position:absolute;top:68px;left:380px;}
-#header .dz .dlz>a{color:#000;font-size:14px;}
+#header .dz .dlz{color:#fff;letter-spacing:1px}
+#header .dz .dlz>a{color:#fff;font-size:14px;}
 #header .dz .dlz>a:hover{color:#05baf5;}
 #content{
 	  background:#cecabf;
@@ -454,12 +450,6 @@ a{text-decoration:none;color:#333}
 }
 #content .rmwz .wz .wz-nr>p{
 	  text-indent:30px;
-	  letter-spacing:2px;
-	  line-height:30px;
-	  margin-left:10px;
-}
-#content .rmwz .wz .wz-nr>pre{
-	  /*text-indent:30px;*/
 	  letter-spacing:2px;
 	  line-height:30px;
 	  margin-left:10px;
@@ -748,6 +738,7 @@ footer{
 .cj .cjlb>table tr td,.cj .cjlb>table tr th{border:1px solid #333}
 /*发布文章*/
 .k-1 .nr-1 input{outline:none;width:457px;height:30px;}
+.k-1 .flei select{width:460px;height:35px;margin-bottom:15px;margin-top:-10px;outline:none;}
 
 /*头像设置*/
 .jttxsz{
@@ -821,19 +812,24 @@ footer{
 .zxdy .fsk{margin-top:35px;}
 .zxdy .fsk input[type=text]{width:900px;height:30px;border:1px solid #999;outline:none;padding-left:8px}
 .zxdy .fsk input[type=button]{height:30px;width:80px;letter-spacing:5px}
-
-.border_co{
-	border:1px solid black;
-	padding: 4px 0 4px 0;
-	background-color: #ccc;
-	box-shadow: 4px 4px #AAA;
-	border-radius: 8px 8px;
-}
-#child_input{
-	position: absolute;
-	left:0;	
-	top:0;
-}
-#child{position:relative;left:50px;padding-top:8px;}
-.hide{display:none;}
-.show{display:block;}
+/*统计信息*/
+.tjxx>div{margin-top:50px;}
+.scsj{display:inline-block;width:350px;text-align:center;float:left;margin-top:75px;letter-spacing:1px;color:#666;}
+.tj-bg{display:inline-block;width:600px;margin-bottom:10px;}
+.tj-bg>table{width:100%;border-collapse:collapse;background:#9edaf7;}
+.tj-bg>table td,.tj-bg>table th{border:1px solid #fff;height:50px;width:100px;text-align:center;color:#666;}
+.fye{position:relative;}
+.fye>div{position:absolute;right:50px;}
+.fye>div>a{display:inline-block;border:1px solid #fff;width:50px;height:20px;border-radius:5px;font-size:12px;line-height:20px;text-align:center;background:green;color:#fff;}
+.fye .youj{margin-right:40px;}
+.tjxx .dingj{margin-top:60px;}
+.x{margin-bottom:20px;}
+.cj .sx .cjkc-active{text-decoration:underline;}
+/*选择课程*/
+.xke-1{height:391px;overflow-y:scroll;margin-top:40px;}
+.xke table{border-collapse:collapse;}
+.xke tr{height:30px;}
+.xke td,.xke th{border:1px solid #333;}
+.xke .xz input{width:15px;height:15px;}
+.xke .xk-tj{text-align:center;margin-top:20px;}
+.xke .xk-tj input{width:70px;height:25px;}
