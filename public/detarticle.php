@@ -102,49 +102,65 @@
 				<div class="plzs">
 				    <?php  
 				    	$pid = $_GET['pid'];
-				    	$result_a = mysql_query("SELECT * FROM tb_test WHERE para_id = ".$pid." AND state = '0' ORDER BY message_publish DESC");
-
+				    	$result_a = mysql_query("SELECT * FROM tb_test WHERE para_id = ".$pid." AND state = '0' ORDER BY message_publish ASC");
 				    	while ($row_a = mysql_fetch_array($result_a)) {
 				    		echo "<div class=\"border_co\">";
 				    		echo 	"<div class=\"plzs\">";
-							echo 		"<div class=\"plr\">";    			
-							echo 			"<img src=\"img/tx.png\"/>";
-							echo 		"</div>";    		 		   		 	
-							echo 		"<div class=\"plnr\">";    			
-							echo 			"<div class=\"z\">";
-							$z = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_a['cu_id']."'");
+							echo 		"<div class=\"plr\">";
+							if($row_a['type'] == 'student'){
+								$z = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_a['cu_id']."'");
+							}else{
+								$z = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_a['cu_id']."'");
+							} 			
 							while ($zz = mysql_fetch_array($z)) {
+								echo 			"<img src=".$zz['head_pic'].">";
+								echo 		"</div>";    		 		   		 	
+								echo 		"<div class=\"plnr\">";    			
+								echo 			"<div class=\"z\">";
 								echo "<span>".$zz['chinese_name']."</span>"."：";
+								echo "<span style=\"display:none;\">".$row_a['message_id']."</span>";
 							}
-							echo 			$row_a['message_content']."<a href=\"javascript:void(0);\" id=\"child_message\" onclick=\"message(this);\"><img src=\"img/tl.png\"/></a>";
+							echo 			$row_a['message_content']."<input class=\"reply\" type=\"button\" value=\"回复\" style=\"margin-left:10px;\" />";
+							
 							echo 			"</div>";
-							echo 			"<div class=\"time\">".date('Y-m-d h:i:s',$row_a['message_publish']);
+							echo 			"<div class=\"time\">".date('Y-m-d H:i:s',$row_a['message_publish']);
 							echo 			"</div>";
 							echo 		"</div>";	//  "<div class=\"plnr\">"			
 							echo 	"</div>";	//"<div class=\"plzs\">"
 							
+
 							//寻找子回复
 							$message_id = $row_a['message_id'];
 							$result_b =mysql_query("SELECT * FROM tb_test WHERE mp_id = '".$message_id."'");
 							while ($row_b = mysql_fetch_array($result_b)) {	
-								echo "<div id=\"child\">";	
-								$result_c = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['cu_id']."'");
+								echo "<div id=\"child\">";
+								if($row_b['type'] == 'student'){
+									$result_c = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['cu_id']."'");
+								}else{
+									$result_c = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_b['cu_id']."'");
+								}
 								while ($row_c = mysql_fetch_array($result_c)) {
 									echo 	"<div class=\"plr\">";
-									echo 		"<img src=\"img/tx.png\"/>";
+									echo 			"<img src=".$row_c['head_pic'].">";
 									echo 	"</div>";	//"<div class=\"plr\">"
 									echo 	"<div class=\"plnr\">";
 									echo 		"<div class=\"z\">";
 									echo 			"<span>".$row_c['chinese_name']."</span>"." 回复 ";
+									echo "<span style=\"display:none;\">".$row_b['message_id']."</span>";
 								}
 
-								$result_d = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['pu_id']."'");
+								if($row_a['type'] == 'student'){
+									$result_d = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['pu_id']."'");
+								}else{
+									$result_d = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_b['pu_id']."'");
+								}
 								while ($row_d = mysql_fetch_array($result_d)) {
 									echo "<span>".$row_d['chinese_name']."</span>"."：";
-									echo $row_b['message_content']."<a href=\"javascript:void(0);\" id=\"child_message\" onclick=\"message(this);\"><img src=\"img/tl.png\"/></a>";
+									echo $row_b['message_content']."<input class=\"reply\" type=\"button\" value=\"回复\" style=\"margin-left:10px;\" />";
 									echo 		"</div>";	//"<div class=\"z\">"
 								}
-								echo "<div class=\"time\">".date('Y-m-d h:i:s',$row_b['message_publish']);
+								
+								echo "<div class=\"time\">".date('Y-m-d H:i:s',$row_b['message_publish']);
 								
 								echo "</div>";
 								echo "</div>";
@@ -199,12 +215,20 @@
 				}
 			});
 		});
+
+		var reply = $('.reply');
+		for (var i = 0; i < reply.length; i++) {
+			$(reply[i]).click(function(){
+				var m_id = $(this).parent().find('span').eq(1).text();
+			})
+		}
+
 	});
 	// var child_message = document.getElementById('child_message');
 	// child_message.onclick = function(){
 	// 	alert(111);
 	// };
-	function message(e){		
+	function reply(e){		
 		var x = document.documentElement.scrollLeft || document.body.scrollLeft;		
 		var y = document.documentElement.scrollTop || document.body.scrollTop;
 		var child_input = document.getElementById('child_input');

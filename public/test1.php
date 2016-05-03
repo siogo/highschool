@@ -102,171 +102,72 @@
 				<div class="plzs">
 				    <?php  
 				    	$pid = $_GET['pid'];
-				    	$esult = mysql_query("SELECT * FROM tb_message WHERE para_id = ".$pid." ORDER BY message_publish DESC");
-				    	
-				    	while ($row = mysql_fetch_array($esult)) {				    		
-				    		if($row['child'] == 1){
-				    			$html = '';
-				    			$uid = $row['user_id'];				    			
-				    			//$parent_id = $row['parent_id'];
-				    			$result = mysql_query("SELECT * FROM tb_message WHERE user_id = ".$uid." AND child=0");
-				    			$result_row = mysql_fetch_array($result);				    			
-				    			if($result_row != false){
-				    				$html .= '
-			    						<div id="child">
-							    			<div class="plr">
-							    		 		<img src="img/tx.png"/>
-							    		 	</div>
-							    			<div class="plnr">
-							    		 		<div class="z">
-							    		 			<span>小新：</span>'.$result_row['message_content'].'
-							    		 		</div>
-							    		 		<div class="time">
-							    		 			'.date('Y-m-d h:i:s',$result_row['message_publish']).'
-							    		 		</div>
-							    			</div>
-							    		</div>
-			    					';
-				    			}
-				    			if($result_row == false){				    				
-				    				while(1){				    									    					
-				    					$p = mysql_query("SELECT * FROM tb_message WHERE parent_id = ".$uid." AND child=1");				    					
-			    						$p_result = mysql_fetch_array($p);			    						
-					    				if($p_result != false){
-					    					$uid = $p_result['user_id'];					    					
-						    				$html .= '
-					    						<div id="child">
-									    			<div class="plr">
-									    		 		<img src="img/tx.png"/>
-									    		 	</div>
-									    			<div class="plnr">
-									    		 		<div class="z">
-									    		 			<span>小新：</span>'.$p_result['message_content'].'
-									    		 		</div>
-									    		 		<div class="time">
-									    		 			'.date('Y-m-d h:i:s',$p_result['message_publish']).'
-									    		 		</div>
-									    			</div>
-									    		</div>									    		
-					    					';						    				
-				    					}else{
-				    						$p = mysql_query("SELECT * FROM tb_message WHERE user_id = ".$uid." AND child=0");				    						
-				    						$p_result = mysql_fetch_array($p);				    					
-						    				if($p_result != false){
-							    				$html .= '
-						    						<div id="child">
-										    			<div class="plr">
-										    		 		<img src="img/tx.png"/>
-										    		 	</div>
-										    			<div class="plnr">
-										    		 		<div class="z">
-										    		 			<span>小新：</span>'.$p_result['message_content'].'
-										    		 		</div>
-										    		 		<div class="time">
-										    		 			'.date('Y-m-d h:i:s',$p_result['message_publish']).'
-										    		 		</div>
-										    			</div>
-										    		</div>
-						    					';
-				    							break;
-				    						}			    				
-				    					}				    					
-				    				}
-				    			}
-				    			echo '
-				    				<div class="border_co">				    			
-										<div class="plzs">
-										    <div class="plr">
-											    <img src="img/tx.png"/>
-											</div>
-											<div class="plnr">
-											    <div class="z">
-												     <span>小新：</span>'.$row['message_content'].'
-												</div>
-												<div class="time">
-												     '.date('Y-m-d h:i:s',$row['message_publish']).'<a href="javascript:void(0);" id="child_message" onclick="message(this);"><img src="img/tl.png"/></a>
-												</div>
-											</div>
-										</div>																				
-										'.$html.'
-									</div><br />
-				    			';
-				    		}else
-				    		{
-				    			$uid = $row['user_id'];
-					    		// 查询头像
-					    		// $r = mysql_query("SELECT * FROM tb_student WHERE ")
-					    		echo "<div class=\"border_co\">";
-					    		echo "<div class=\"plr\">";
-					    		echo 	"<img src=\"img/tx.png\"/>";
-					    		echo "</div>";
-					    		echo "<div class=\"plnr\">";
-					    		echo 	"<div class=\"z\">";
-					    		echo 		"<span>小新：</span>".$row['message_content']; 
-					    		echo 	"</div>";
-					    		echo 	"<div class=\"time\">";
-					    		echo 		"".date('Y-m-d h:i:s',$row['message_publish'])." <a href=\"javascript:void(0);\" id=\"child_message\" onclick=\"message(this);\"><img src=\"img/tl.png\"/></a>";
-					    		echo 	"</div>";
-					    		echo "</div>";
-
-					    		echo "</div>";
-					    		echo "<br />";
-				    		}				    		
-				    	}	
-				    ?>
-				    <?php  
-				    	$pid = $_GET['pid'];
-				    	$result_a = mysql_query("SELECT * FROM tb_test WHERE para_id = ".$pid." AND state = '0' ORDER BY message_publish DESC");
-
+				    	$result_a = mysql_query("SELECT * FROM tb_test WHERE para_id = ".$pid." AND state = '0' ORDER BY message_publish ASC");
 				    	while ($row_a = mysql_fetch_array($result_a)) {
 				    		echo "<div class=\"border_co\">";
-				    		echo 	"<div id=\"plzs\">";
-							echo 		"<div class=\"plr\">";    			
-							echo 			"<img src=\"img/tx.png\"/></div>";    		 		   		 	
-							echo 		"<div class=\"plnr\">";    			
-							echo 				"<div class=\"z\">";    		 		
-							echo 						"<span>小新：</span>".$row_a['message_content']."</div>"; 
-							echo "<div class=\"time\">".date('Y-m-d h:i:s',$row_a['message_publish'])."<a href=\"javascript:void(0);\" id=\"child_message\" onclick=\"message(this);\"><img src=\"img/tl.png\"/></a></div>";
-							echo "</div>";    			
-							echo "</div>";
+				    		echo 	"<div class=\"plzs\">";
+							echo 		"<div class=\"plr\">";
+							if($row_a['type'] == 'student'){
+								$z = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_a['cu_id']."'");
+							}else{
+								$z = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_a['cu_id']."'");
+							} 			
+							while ($zz = mysql_fetch_array($z)) {
+								echo 			"<img src=".$zz['head_pic'].">";
+								echo 		"</div>";    		 		   		 	
+								echo 		"<div class=\"plnr\">";    			
+								echo 			"<div class=\"z\">";
+								echo "<span>".$zz['chinese_name']."</span>"."：";
+								echo "<span style=\"display:none;\">".$row_a['message_id']."</span>";
+							}
+							echo 			$row_a['message_content']."<input class=\"reply\" type=\"button\" value=\"回复\" style=\"margin-left:10px;\" />";
 							
+							echo 			"</div>";
+							echo 			"<div class=\"time\">".date('Y-m-d H:i:s',$row_a['message_publish']);
+							echo 			"</div>";
+							echo 		"</div>";	//  "<div class=\"plnr\">"			
+							echo 	"</div>";	//"<div class=\"plzs\">"
+							
+
 							//寻找子回复
 							$message_id = $row_a['message_id'];
 							$result_b =mysql_query("SELECT * FROM tb_test WHERE mp_id = '".$message_id."'");
-							while ($row_b = mysql_fetch_array($result_b)) {
-								
+							while ($row_b = mysql_fetch_array($result_b)) {	
 								echo "<div id=\"child\">";
-								echo "<div class=\"plr\">";
-								$result_c = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['cu_id']."'");
+								if($row_b['type'] == 'student'){
+									$result_c = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['cu_id']."'");
+								}else{
+									$result_c = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_b['cu_id']."'");
+								}
 								while ($row_c = mysql_fetch_array($result_c)) {
-									
-									echo "<img src=\"img/tx.png\"/></div>";
-									echo "<div class=\"plnr\">";
-									echo "<div class=\"z\">";
-									echo $row_c['chinese_name']." 对 ";
-
-									
-									// echo "<span>小新：</span>".$rwoa['message_content']."</div>";
-									// 
-									
-									
-									
+									echo 	"<div class=\"plr\">";
+									echo 			"<img src=".$row_c['head_pic'].">";
+									echo 	"</div>";	//"<div class=\"plr\">"
+									echo 	"<div class=\"plnr\">";
+									echo 		"<div class=\"z\">";
+									echo 			"<span>".$row_c['chinese_name']."</span>"." 回复 ";
+									echo "<span style=\"display:none;\">".$row_b['message_id']."</span>";
 								}
 
-								$result_d = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['pu_id']."'");
+								if($row_a['type'] == 'student'){
+									$result_d = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row_b['pu_id']."'");
+								}else{
+									$result_d = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_b['pu_id']."'");
+								}
 								while ($row_d = mysql_fetch_array($result_d)) {
-									echo $row_d['chinese_name']."说:".$row_b['message_content'];
-									
+									echo "<span>".$row_d['chinese_name']."</span>"."：";
+									echo $row_b['message_content']."<input class=\"reply\" type=\"button\" value=\"回复\" style=\"margin-left:10px;\" />";
+									echo 		"</div>";	//"<div class=\"z\">"
 								}
-								echo "<div class=\"time\">".date('Y-m-d h:i:s',$row_b['message_publish'])."<a href=\"javascript:void(0);\" id=\"child_message\" onclick=\"message(this);\"><img src=\"img/tl.png\"/></a></div>";
+								
+								echo "<div class=\"time\">".date('Y-m-d H:i:s',$row_b['message_publish']);
 								
 								echo "</div>";
 								echo "</div>";
-								echo "</div>";
+								echo "</div>";	//<div id=\"child\">
 							}
-							echo "</div>";
-							echo "</div>";
-							echo "<div style=\"height:20px;\"></div>";
+							echo "</div>";	//<div class=\"border_co\">
+							echo "<div style=\"height:20px;\"></div>";	//最后的div；
 				    	}
 				    ?>
 				</div>
@@ -314,12 +215,20 @@
 				}
 			});
 		});
+
+		var reply = $('.reply');
+		for (var i = 0; i < reply.length; i++) {
+			$(reply[i]).click(function(){
+				var m_id = $(this).parent().find('span').eq(1).text();
+			})
+		}
+
 	});
 	// var child_message = document.getElementById('child_message');
 	// child_message.onclick = function(){
 	// 	alert(111);
 	// };
-	function message(e){		
+	function reply(e){		
 		var x = document.documentElement.scrollLeft || document.body.scrollLeft;		
 		var y = document.documentElement.scrollTop || document.body.scrollTop;
 		var child_input = document.getElementById('child_input');
