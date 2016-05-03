@@ -57,16 +57,14 @@
 					$values = implode('\',\'',$value);
 					$query = "INSERT INTO $tablename ($names) VALUES ('$values')";
 				}else{
-					echo "参数不是数组！";
-					return;
+					echo '{"msg":"参数不是数组！","success":"0"}';
 				}
 			}else{
 				$query = "";
 			}
 			$result = mysqli_query($this->con,$query);
 			if(!$result){
-				echo "插入失败，请检查参数是否正确！";
-				return;
+				echo '{"msg":"插入失败，请检查参数是否正确！","success":"0"}';
 			}
 			if(mysqli_affected_rows($this->con) !== FALSE){				
 				return true;
@@ -83,13 +81,7 @@
 			}
 			$result = mysqli_query($this->con,$query);
 			if(!$result){
-				echo "更新数据失败,请检查参数是否正确！";
-				return;
-			}
-			if(mysqli_affected_rows($this->con) !== FALSE){
-				return true;
-			}else{
-				return false;
+				echo '{"msg":"更新数据失败,请检查参数是否正确！","success":"0"}';
 			}
 		}
 		
@@ -103,8 +95,7 @@
 			}
 			$result = mysqli_query($this->con,$query);
 			if(!$result){
-				echo "删除数据失败，请检查参数是否正确！";
-				return;
+				echo '{"msg":"删除数据失败，请检查参数是否正确！","success":"0"}';				
 			}
 			if(mysqli_affected_rows($this->con) !== FALSE){
 				return true;
