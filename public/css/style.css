@@ -204,7 +204,7 @@ body,ul,h1{
 .wzxqk .jt-article .pl>input[type=text]{width:910px;height:30px;border:1px solid #999;}
 .wzxqk .jt-article .pl>input[type=button]{background:url(../img/pl.png) no-repeat;background-size:35px;vertical-align:middle;width:40px;height:30px;margin-left:10px;}
 .wzxqk .jt-article .plzs .plr,.wzxqk .jt-article .plnr{display:inline-block;font-size:18px;color:#666;}
-.wzxqk .jt-article .plzs .plr>img{width:60px;vertical-align:bottom}
+.wzxqk .jt-article .plzs .plr>img{width:60px;vertical-align:bottom;border-radius:10px;padding: 2px;}
 .wzxqk .jt-article .plnr{margin-left:10px}
 .wzxqk .jt-article .plnr .z>span{color:#f00;}
 .wzxqk .jt-article .plnr .time>img{width:30px;vertical-align:middle;}
