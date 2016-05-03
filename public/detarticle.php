@@ -146,7 +146,7 @@
 									echo 	"<div class=\"plnr\">";
 									echo 		"<div class=\"z\">";
 									echo 			"<span>".$row_c['chinese_name']."</span>"." 回复 ";
-									echo "<span style=\"display:none;\">".$row_b['message_id']."</span>";
+									echo "<span style=\"display:none;\">".$row_a['message_id']."</span>";
 								}
 
 								if($row_a['type'] == 'student'){
@@ -205,7 +205,7 @@
         var pid = $.getUrlParam('pid');
 		$('#btn').click(function(){
 			var val = $('#txt').val();
-			$.post('addliuyan.php',{content:val,pid:pid},function(data){
+			$.post('addliuyan.php',{content:val,pid:pid,type:'0'},function(data){
 				// alert(data);
 				if(data == '1'){
 					alert('留言成功');
@@ -216,13 +216,31 @@
 			});
 		});
 
+		var key;
 		var reply = $('.reply');
 		for (var i = 0; i < reply.length; i++) {
 			$(reply[i]).click(function(){
 				var m_id = $(this).parent().find('span').eq(1).text();
-			})
+				$('#child_input').show();
+				key = m_id;
+			});
 		}
+		$('#cancel').click(function(){
+			$('#child_input').hide();
+		});
 
+		$('#up').click(function(){
+			var content = $('#chile_message').val();
+			console.log(key+" / "+content+" / "+pid);
+			$.post("addliuyan.php", {content:content,pid:pid,type:'1',key:key}, function(data){
+				if(data == '1'){
+					alert('留言成功');
+					window.location.reload(true);
+				}else{
+					alert('您未登录，请先登录');
+				}
+			})
+		});
 	});
 	// var child_message = document.getElementById('child_message');
 	// child_message.onclick = function(){
