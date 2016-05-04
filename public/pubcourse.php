@@ -76,9 +76,9 @@
 					<div>
 					    <label>课程属性</label>
 						<div class="kuangk" id="course_type">
-						    <input type="radio" name="type" value="compulsory" />必修
-							<input type="radio" name="type" value="take" />选修
-							<input type="radio" name="type" value="other" />其他
+						    <input type="radio" name="type" value="必修" />必修
+							<input type="radio" name="type" value="选修" />选修
+							<input type="radio" name="type" value="其他" />其他
 					    </div>
 					</div>
 					<div>

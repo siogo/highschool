@@ -7,12 +7,13 @@
 
 	$name = $_POST['name'];
 	$course = $_POST['course'];
-	$teacher_id = $_COOKIE['id'];
+	$tid = $_COOKIE['id'];
+	$teacher = $_COOKIE['username'];
 	$flag = '0';
 
 	
 	if($name){
-		$b = mysql_query("SELECT online_title FROM tb_onlinestu WHERE online_author = '".$teacher_id."'");
+		$b = mysql_query("SELECT online_title FROM tb_onlinestu WHERE online_author = '".$tid."'");
 		while ($rob = mysql_fetch_array($b)) {
 			if($name == $rob['online_title']){
 				echo '2';//作业重复
