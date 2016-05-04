@@ -62,8 +62,7 @@
 			    	$pid = $_GET['pid'];
 			    	$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_id = ".$pid);
 			    	while ($row = mysql_fetch_array($result)) {
-			    		echo $row['para_title'];
-			    	
+			    		echo $row['para_title'];			    	
 			    ?>
 				</div>
 				<div class="xian"></div>

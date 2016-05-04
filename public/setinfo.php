@@ -51,7 +51,7 @@
 			</div>
 			<div class="Xx">
 			    <span class="stu"><a href="./myclass.php">我的课程</a></span>&nbsp;&nbsp;
-				<span class="stu"><a href="./myhomework.php">我的作业</a></span>
+				<span class="stu"><a href="./myhomework.php?page=1">我的作业</a></span>
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;

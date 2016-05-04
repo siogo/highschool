@@ -118,7 +118,8 @@
 			var name = $('#name').val();
 			var content = $('#yaoqiu').val();
 			var course = $('#course').val();
-			$.post("addhomework.php", {name:name,course:course}, function(data){
+			var yaoqiu = $('#yaoqiu').val();
+			$.post("addhomework.php", {name:name,course:course,yaoqiu:yaoqiu}, function(data){
 			 	switch(data){
 			 		case '0':
 			 			alert("添加失败(信息不全)");

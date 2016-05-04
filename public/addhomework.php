@@ -9,6 +9,8 @@
 	$course = $_POST['course'];
 	$tid = $_COOKIE['id'];
 	$teacher = $_COOKIE['username'];
+	$yaoqiu = $_POST['yaoqiu'];
+	$time = time();
 	$flag = '0';
 
 	
@@ -32,7 +34,7 @@
 		}else{
 			mkdir("homework/".iconv("UTF-8","GB2312",$teacher)."/");
 		}
-		mkdir("homework/".iconv("UTF-8","GB2312",$teacher)."/".iconv("UTF-8","GB2312",$name));
-		mysql_query("INSERT into tb_onlinestu (online_author,online_title,course_id) VALUES ('".$tid."','".$name."','".$course."')");
+		mkdir("homework/".iconv("UTF-8","GB2312",$teacher)."/".iconv("UTF-8","GB2312",$time));
+		mysql_query("INSERT into tb_onlinestu (online_author,online_title,course_id,yaoqiu,online_publishtime) VALUES ('".$tid."','".$name."','".$course."','".$yaoqiu."','".$time."')");
 	}
 ?>
