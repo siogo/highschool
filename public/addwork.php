@@ -81,6 +81,11 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="bt">
+							    <div style="margin-bottom:20px">截止时间</div>
+							</td>
+						</tr>
+						<tr>
 						    <td class="bt">
 							    <div>具体要求</div>
 							</td>
