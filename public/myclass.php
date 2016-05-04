@@ -1,8 +1,15 @@
+<?php  
+	header("Content-Type:text/html;charset=UTF-8");
+	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
+	mysql_select_db("highschool");
+	mysql_query("set names 'utf8'");
+
+?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <title>我的课表</title>
+    <title>我的课程</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -33,133 +40,68 @@
 			</nav>
 		</div>
 	</header>
-    <div id="content" style="background:#fff;border:1px solid #333;width:998px">	
-	    <div class="k">
+    <div id="content" style="width:998px;border:1px solid #333;height:530px;padding:0">	
+	    <div class="wk zylb" style="background:#fff;">
 		    <div class="wz">
-			    当前位置：我的课表
+			    当前位置:我的课程
 			</div>
-			<div class="return">
-			    <a href="javascript:history.go(-1);location.reload()">返回</a>
+		    <div class="return">
+			    <a href="#" style=" color:#333">返回</a>
 			</div>
-			<div class="course">
-			    <div class="course-1">
-				    <table border="1" cellspacing="0" cellpadding="0" bgcolor="#9edaf7" style="border-style:none">
-					    <tr style="height:50px;">
-						    <th colspan="2" style="border:1px solid #fff"></th>
-							<th class="t">星期一</th>
-							<th class="t">星期二</th>
-							<th class="t">星期三</th>
-							<th class="t">星期四</th>
-							<th class="t">星期五</th>
-						</tr>  
-						<tr>
-						    <td rowspan="4" class="t-2"><b>上午</b></td>
-							<td class="t-4">第一节（08:00-09:00）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-						<tr>
-						    <td class="t-4">第一节（09:05-09:50）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-						<tr>
-						    <td class="t-4">第二节（10:05-10:50）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-						<tr>
-						    <td class="t-4">第二节（10:55-11:40）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-					</table>
+			<div class="cj">
+			    <div class="sx">
+				    <div>
+					    <a href="#" class="cjkc-active">全部课程</a>
+					</div>
+					<div>
+					    <a href="choosesource.php">选择课程</a>
+					</div>
+					<div>
+					    <a href="#">我的课表</a>
+					</div>
 				</div>
-				
-				<div class="course-1" style="margin-top:10px">
-				    <table border="1" cellspacing="0" cellpadding="0" bgcolor="#9edaf7" style="border-style:none">  
+				<div class="cjlb">
+				    <table border="1">
 						<tr>
-						    <td rowspan="4" class="t-2"><b>下午</b></td>
-							<td class="t-4">第三节（14:00-14:45）</td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-						</tr>  
+						    <th style="width:150px">课程号</th>
+							<th>课程名</th>
+							<th style="width:150px">学分</th>
+							<th style="width:150px">课程属性</th>
+							<th style="width:90px">任课老师</th>
+						</tr>
+
+						<?php  
+							$result = mysql_query("SELECT * FROM tb_choosecourse WHERE student_id = '".$_COOKIE['id']."'");
+							while ($row = mysql_fetch_array($result)) {
+								echo "<tr>";
+								$result_a = mysql_query("SELECT * FROM tb_course WHERE course_id = '".$row['course_id']."'");
+								while ($row_a = mysql_fetch_array($result_a)) {
+									echo "<td>".$row_a['course_id']."</td>";
+									echo "<td>".$row_a['course_name']."</td>";
+									echo "<td>".$row_a['credits']."</td>";
+									echo "<td>".$row_a['course_type']."</td>";
+								}
+								$result_b = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row['teacher_id']."'");
+								while ($row_b = mysql_fetch_array($result_b)) {
+									echo "<td>".$row_b['chinese_name']."</td>";
+								}
+								echo "</tr>";
+							}
+						?>					    
+
+					    
 						<tr>
-						    <td class="t-4">第三节（14:50-15:35）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-						<tr>
-						    <td class="t-4">第四节（15:50-16:35）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-						<tr>
-						    <td class="t-4">第四节（16:40-17:25）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-						</tr>  
-					</table>
-				</div>
-				
-				<div class="course-1" style="margin-top:10px">
-				    <table border="1" cellspacing="0" cellpadding="0" bgcolor="#9edaf7" style="border-style:none">  
-						<tr>
-						    <td rowspan="4" class="t-2"><b>晚上</b></td>
-							<td class="t-4">第五节（18:30-19:15）</td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							<td class="t-3 t"></td>
-							
-						</tr>  
-						<tr>
-						    <td class="t-4">第五节（19:20-20:05）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							
-						</tr>  
-						<tr>
-						    <td class="t-4">第五节（20:15-21:00）</td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							<td class="t-3"></td>
-							
-						</tr>  
+						    <td>课程号</td>
+							<td>毛泽东思想和中国特色社会主义理论体系概论</td>
+							<td>学分</td>
+							<td>必修</td>
+							<td>任课老师</td>
+						</tr>
 					</table>
 				</div>
 			</div>
-		</div>  
+			
+		</div>
 	</div>
 	<!--<header>header</header>
 	<section>section</section>-->
