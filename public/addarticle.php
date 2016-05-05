@@ -1,3 +1,11 @@
+<?php
+	if(!isset($_COOKIE['is_login'])){
+		echo "<script>
+				var confirm = confirm('您未登录,是否跳转到登录页面');
+				if(confirm){window.location.href='login.php'}else{window.location.href='index.php'};
+			  </script>";		
+	}
+?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -12,9 +20,9 @@
 			<nav class="link">
 			    <ul class="o-nav">
 			        <li><a href="./index.php" class="s-bc">首页</a></li>
-				    <li class="active"><a href="###" class="f-bc">发布文章</a></li>
-				    <li><a href="###" class="d-bc">在线答疑</a></li>
+				    <li class="active"><a href="addarticle.php" class="f-bc">发布文章</a></li>				    
 				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
+				    <li><a href="setinfo.php" class="d-bc">个人中心</a></li>
 			    </ul>
 				<div class="dz">
 				    <ul>
