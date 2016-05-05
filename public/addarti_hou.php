@@ -9,9 +9,10 @@
 	$connect = $_POST['content'];
 	$list = $_POST['list'];
 	$time = time();
-	$user = $_COOKIE["username"];
+	$user = $_COOKIE["id"];
+	$type = $_COOKIE['group'];
 
-	mysql_query("INSERT into tb_paragraph (para_content,para_title,account,para_kind,para_publish) VALUES ('".$connect."','".$title."','".$user."','".$list."','".$time."')");
+	mysql_query("INSERT into tb_paragraph (para_content,para_title,account,para_kind,para_publish,type) VALUES ('".$connect."','".$title."','".$user."','".$list."','".$time."','".$type."')");
 	echo "添加成功";
 
 	
