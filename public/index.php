@@ -63,18 +63,35 @@
 			</div>
 			<div style="position:relative">
 			    <div class="tulip" style="position:absolute;top:100px;">
-				    <img src="img/Tulip.jpg">
+			    <?php  
+		        	$result = mysql_query('SELECT * FROM tb_paragraph order by para_id desc limit 0,1');
+		        	while ($row = mysql_fetch_array($result)) {
+		        		$account = $row['account'];
+		        		$type = $row['type'];
+		        		if($type == 'student'){
+		        			$result_a = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$account."'");
+		        			while ($row_a = mysql_fetch_array($result_a)) {
+		        				$head_pic = $row_a['head_pic'];
+		        			}
+		        		}else{
+		        			$result_a = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$account."'");
+		        			while ($row_a = mysql_fetch_array($result_a)) {
+		        				$head_pic = $row_a['head_pic'];
+		        			}
+		        		}
+
+		        		echo "<img src=\"".$head_pic."\">";
+		        ?>
+				    
 				</div>
 				<div class="all-wz">
 				    <div class="wz">
 				        <div class="wz-bt">
-				        <?php  
-				        	$result = mysql_query('SELECT * FROM tb_paragraph order by para_id desc limit 0,1');
-				        	while ($row = mysql_fetch_array($result)) {
-				        		// <a href="###">十万个为什么</a>
-				        		echo "<a href=\"detarticle.php?pid=".$row['para_id']."\">".$row['para_title']."</a>";
-				        		echo "<span >".$row['para_id']."</span>";
-				        ?>    
+		        <?php
+		        		// <a href="###">十万个为什么</a>
+		        		echo "<a href=\"detarticle.php?pid=".$row['para_id']."\">".$row['para_title']."</a>";
+		        		echo "<span >".$row['para_id']."</span>";
+		        ?>    
 					    </div>
 					    <div class="fbtime">
 					    <?php  
@@ -121,24 +138,17 @@
 			</div>
 			<div class="tx">
 			    <ul>
-				    <li>
-					    <a href="###"><img src="img/Tulip.jpg"></a>
-					</li>
-					<li>
-					    <a href="###"><img src="img/Tulip.jpg"></a>
-					</li>
-					<li>
-					    <a href="###"><img src="img/Tulip.jpg"></a>
-					</li>
-					<li>
-					    <a href="###"><img src="img/Tulip.jpg"></a>
-					</li>
-					<li>
-					    <a href="###"><img src="img/Tulip.jpg"></a>
-					</li>
-					<li>
-					    <a href="###"><img src="img/Tulip.jpg"></a>
-					</li>
+		<?php  
+			$result_b = mysql_query("SELECT * FROM tb_student order by count desc limit 0,5");
+			while ($row_b = mysql_fetch_array($result_b)) {
+				echo "<li>";
+				echo 	"<a><img src=\"".$row_b['head_pic']."\"></a>";
+				echo "</li>";
+				# code...
+			}
+		?>
+				    
+					
 				</ul>
 			</div>
 		</div>
