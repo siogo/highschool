@@ -16,10 +16,16 @@
 			$time = time();//添加时间
 			echo '1';
 			mysql_query("INSERT INTO tb_test (message_content,message_publish,para_id,cu_id,type) VALUES ('".$content."','".$time."','".$pid."','".$id."','".$type."')");
+			$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_id = '".$pid."'");
+			while ($row = mysql_fetch_array($result)) {
+				$discuss = $row['count_discuss'];
+			}
+			$discuss = $discuss + 1;
+			mysql_query("UPDATE tb_paragraph SET count_discuss = '".$discuss."' WHERE para_id = '".$pid."'");
 		}else{
 			echo "0";
 		}
-	}else{
+	}else{//回复评论下的评论
 		if(isset($_COOKIE["username"])){
 
 			$content = $_POST['content'];//留言内容；
@@ -35,6 +41,12 @@
 			}
 			echo '1';
 			mysql_query("INSERT INTO tb_test (message_content,message_publish,para_id,cu_id,type,mp_id,state,pu_id) VALUES ('".$content."','".$time."','".$pid."','".$id."','".$type."','".$key."','1','".$pu_id."')");
+			$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_id = '".$pid."'");
+			while ($row = mysql_fetch_array($result)) {
+				$discuss = $row['count_discuss'];
+			}
+			$discuss = $discuss + 1;
+			mysql_query("UPDATE tb_paragraph SET count_discuss = '".$discuss."' WHERE para_id = '".$pid."'");
 		}else{
 			echo "0";
 		}

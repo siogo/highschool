@@ -1,4 +1,5 @@
 <?php  
+	
 	header("Content-Type:text/html;charset=UTF-8");
 	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
 	mysql_select_db("highschool");
@@ -89,8 +90,7 @@
 				        <div class="wz-bt">
 		        <?php
 		        		// <a href="###">十万个为什么</a>
-		        		echo "<a href=\"detarticle.php?pid=".$row['para_id']."\">".$row['para_title']."</a>";
-		        		echo "<span >".$row['para_id']."</span>";
+		        		echo "<a class=\"link\" href=\"#\">".$row['para_title']."<span style=\"display:none;\">".$row['para_id']."</span></a>";
 		        ?>    
 					    </div>
 					    <div class="fbtime">
@@ -103,32 +103,15 @@
 					    <?php  
 					    		$str = substr($row['para_content'],0,299)."...";
 					    		echo "<pre>".$str;
-					    	}
+					    	
+
 					    ?>
 					        </pre>
-						    <div class="wz-xq"><a href="###"><b>查看全文>></b></a></div>
+						    <div class="wz-xq"><?php echo "<a class=\"link\" href=\"#\"><span style=\"display:none;\">".$row['para_id']."</span>";} ?><b>查看全文>></b></a></div>
+						    
 					    </div>
 					</div>
-					<!-- <div class="wz none">
-				        <div class="wz-bt">
-					        <a href="###">十万个为什么</a>
-					    </div>
-					    <div class="fbtime">
-					        2015年10月23日
-					    </div>
-					    <div class="wz-nr">
-					        <p>
-					             有一次，在我参加的一个晚会上，主持人问一个小男孩：你长大以后要做什么样的人？孩子看看我们这些企业家，然后说：做企业家。在场的人忽地笑着鼓起了掌。我也拍了拍手，但听着并不舒服。我想，这孩子对于企业究竟知道多少呢？他是不是因为当着我们的面才说要当企业家的呢？他是不是受了大人的影响，以为企业家风光，都是有钱的人，才要当企业家的呢？...
-					        </p>
-						    <div class="wz-xq"><a href="###"><b>查看全文>></b></a></div>
-					    </div>
-					</div> -->
-					<div class="zxwz">
-					    <input type="button" value="5" class="zx-wz"/>
-					</div>
-					<div class="shouqi">
-					    <input type="button" value="收起" class="sq"/>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -169,9 +152,9 @@
 							    	<?php  
 							    		$res = mysql_query("SELECT * FROM tb_paragraph order by count_read desc limit 0,1");
 							    		while ($ros = mysql_fetch_array($res)) {
-							    			echo "<a href=\"###\">".$ros['para_title']."</a>"
+							    			echo "<a class=\"link\" href=\"###\">".$ros['para_title']."<span style=\"display:none;\">".$ros['para_id']."</span></a>";
 							    	?>
-								    
+					
 								</div>
 							    <p class="zw">
 								    <a href="###">
@@ -182,7 +165,7 @@
 									</a>
 								</p>
 								<div class="zz">
-								    阅读（<?php echo $ros['count_read']?>）|转载（<?php echo $ros['count_send']?>）|评论（<?php echo $ros['count_discuss']; }?>）
+								    阅读（<?php echo $ros['count_read']?>）|评论（<?php echo $ros['count_discuss']; }?>）
 								</div>
 							</li>
 							<li>
@@ -190,7 +173,7 @@
 							    	<?php  
 							    		$res = mysql_query("SELECT * FROM tb_paragraph order by count_read desc limit 1,1");
 							    		while ($ros = mysql_fetch_array($res)) {
-							    			echo "<a href=\"###\">".$ros['para_title']."</a>"
+							    			echo "<a class=\"link\" href=\"###\">".$ros['para_title']."<span style=\"display:none;\">".$ros['para_id']."</span></a>";
 							    	?>
 								</div>
 							    <p class="zw">
@@ -201,7 +184,7 @@
 									</a>
 								</p>
 								<div class="zz">
-								    阅读（<?php echo $ros['count_read']?>）|转载（<?php echo $ros['count_send']?>）|评论（<?php echo $ros['count_discuss']; }?>）
+								    阅读（<?php echo $ros['count_read']?>）|评论（<?php echo $ros['count_discuss']; }?>）
 								</div>
 							</li>
 						</ul>
@@ -224,6 +207,16 @@
 <script src="js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var link = $('.link');
+		for (var i = 0; i < link.length; i++) {	
+			$(link[i]).click(function(){
+				var val = $(this).find('span').text();
+				$(this).attr('href','detarticle.php?pid='+val);
+				$.post("count.php", {pid:val}, function(data){});
+			})
+		}
+
+		
 		$('#three').flexslider({
 					
 			animation: "slide",
@@ -254,6 +247,8 @@
 			var text = $('#txt').val();
 			window.location.href = "http://127.0.0.1/bs/highschool/public/search.php?search="+text;
 		});
+
+
 
 	});
 </script>
