@@ -94,7 +94,7 @@
 					<li><a href="javascript:void(0);" onclick="welcome(this);">管理后台</a></li>
 					<li><a href="javascript:void(0);" onclick="audit(this);">文章列表</a></li>
 					<li><a href="javascript:void(0);" onclick="message(this);">留言列表</a></li>
-					<li><a href="javascript:void(0);" onclick="homeword(this);">作业列表</a></li>
+					<li><a href="javascript:void(0);" onclick="homework(this);">作业列表</a></li>
 					<li><a href="javascript:void(0);" onclick="student(this);">学生信息</a></li>
 					<li><a href="javascript:void(0);" onclick="teacher(this);">教师信息</a></li>
 				</ul>
@@ -102,11 +102,67 @@
 		</div>
 		
 		<div id="content-side">
-			<div id="welcome" class="hide">
+			<div id="welcome" class="show">
 				<p>Hello,欢迎使用本系统后台管理系统</p>
 				<p>请点击右边链接进行相应操作</p>
 			</div>
-			<div id="audit" class="show">				
+			<div id="teacher" class="hide">
+				<table border="1" width="950" height="60" cellspacing="0" cellpadding="6">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>标题</td>
+							<td>发布时间</td>
+							<td>发布用户</td>
+							<td>发布内容</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="message" class="hide">
+				<table border="1" width="950" height="60" cellspacing="0" cellpadding="6">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>标题</td>
+							<td>发布时间</td>
+							<td>发布用户</td>
+							<td>发布内容</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="student" class="hide">
+				<table border="1" width="950" height="60" cellspacing="0" cellpadding="6">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>标题</td>
+							<td>发布时间</td>
+							<td>发布用户</td>
+							<td>发布内容</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="homework" class="hide">
+				<table border="1" width="950" height="60" cellspacing="0" cellpadding="6">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>标题</td>
+							<td>发布时间</td>
+							<td>发布用户</td>
+							<td>发布内容</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="audit" class="hide">				
 				<table border="1" width="950" height="60" cellspacing="0" cellpadding="6">
 					<thead>
 						<tr>
@@ -169,6 +225,30 @@
 		var oDiv = document.getElementById('content-side');
 		var div = oDiv.getElementsByTagName('div');
 
+		function student(obj){
+			for(var i=0;i<div.length;i++){
+				if(div[i].getAttribute('class') == 'show'){
+					div[i].className = 'hide';
+				}
+			}
+			var fun = /function\s+(\w+)/.exec(arguments.callee)[1];
+			var oDiv = document.getElementById(fun);
+			if(oDiv.getAttribute('class') == 'hide'){
+				oDiv.className = 'show';	
+			}
+		}
+		function teacher(obj){
+			for(var i=0;i<div.length;i++){
+				if(div[i].getAttribute('class') == 'show'){
+					div[i].className = 'hide';
+				}
+			}
+			var fun = /function\s+(\w+)/.exec(arguments.callee)[1];
+			var oDiv = document.getElementById(fun);
+			if(oDiv.getAttribute('class') == 'hide'){
+				oDiv.className = 'show';	
+			}
+		}
 		function audit(obj){
 			for(var i=0;i<div.length;i++){
 				if(div[i].getAttribute('class') == 'show'){
@@ -180,6 +260,30 @@
 			if(oDiv.getAttribute('class') == 'hide'){
 				oDiv.className = 'show';	
 			}			
+		}
+		function homework(obj){
+			for(var i=0;i<div.length;i++){
+				if(div[i].getAttribute('class') == 'show'){
+					div[i].className = 'hide';
+				}
+			}
+			var fun = /function\s+(\w+)/.exec(arguments.callee)[1];
+			var oDiv = document.getElementById(fun);
+			if(oDiv.getAttribute('class') == 'hide'){
+				oDiv.className = 'show';	
+			}
+		}
+		function message(obj){
+			for(var i=0;i<div.length;i++){
+				if(div[i].getAttribute('class') == 'show'){
+					div[i].className = 'hide';
+				}
+			}
+			var fun = /function\s+(\w+)/.exec(arguments.callee)[1];
+			var oDiv = document.getElementById(fun);
+			if(oDiv.getAttribute('class') == 'hide'){
+				oDiv.className = 'show';	
+			}
 		}
 		function welcome(obj){
 			for(var i=0;i<div.length;i++){
