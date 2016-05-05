@@ -1,15 +1,17 @@
 <?php  
+
 	header("Content-Type:text/html;charset=UTF-8");
 	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
 	mysql_select_db("highschool");
 	mysql_query("set names 'utf8'");
 
 ?>
+
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <title>我的课程</title>
+    <title>作业列表-老师</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -43,7 +45,7 @@
     <div id="content" style="width:998px;border:1px solid #333;height:530px;padding:0">	
 	    <div class="wk zylb" style="background:#fff;">
 		    <div class="wz">
-			    当前位置:我的课程
+			    当前位置:管理作业
 			</div>
 		    <div class="return">
 			    <a href="#" style=" color:#333">返回</a>
@@ -51,47 +53,35 @@
 			<div class="cj">
 			    <div class="sx">
 				    <div>
-					    <a href="#" class="cjkc-active">全部课程</a>
+					    <a href="#" class="cjkc-active">全部作业</a>
 					</div>
 					<div>
-					    <a href="choosesource.php">选择课程</a>
-					</div>
-					<div>
-					    <a href="#">我的课表</a>
+					    <a href="">查看作业</a>
 					</div>
 				</div>
 				<div class="cjlb">
 				    <table border="1">
-						<tr>
-						    <th style="width:150px">课程号</th>
-							<th>课程名</th>
-							<th style="width:150px">学分</th>
-							<th style="width:150px">课程属性</th>
-							<th style="width:90px">任课老师</th>
+					    <tr>
+						    <th>作业题目作业题目作业题目作业题目作业题目</th>
+							<th style="width:150px">发布时间</th>
+							<th style="width:150px">截止时间</th>
+							<th style="width:90px">完成情况</th>
 						</tr>
 
-						<?php  
-							$result = mysql_query("SELECT * FROM tb_choosecourse WHERE student_id = '".$_COOKIE['id']."'");
-							while ($row = mysql_fetch_array($result)) {
-								echo "<tr>";
-								$result_a = mysql_query("SELECT * FROM tb_course WHERE course_id = '".$row['course_id']."'");
-								while ($row_a = mysql_fetch_array($result_a)) {
-									echo "<td>".$row_a['course_id']."</td>";
-									echo "<td>".$row_a['course_name']."</td>";
-									echo "<td>".$row_a['credits']."</td>";
-									echo "<td>".$row_a['course_type']."</td>";
-								}
-								$result_b = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row['teacher_id']."'");
-								while ($row_b = mysql_fetch_array($result_b)) {
-									echo "<td>".$row_b['chinese_name']."</td>";
-								}
-								echo "</tr>";
-							}
-						?>
+				<?php  
+					$result = mysql_query("SELECT * FROM tb_onlinestu WHERE online_author = '".$_COOKIE['id']."'");
+					while ($row = mysql_fetch_array($result)) {
+						echo "<tr>";
+						echo 	"<td>".$row['online_title']."</td>";
+						echo 	"<td>".date("Y-m-d",$row['online_publishtime'])."</td>";
+						echo 	"<td>".date("Y-m-d",$row['online_endtime'])."</td>";
+						echo 	"<td><a href=\"checkhomework.php?oid=".$row['online_id']."\" style=\"color:#7406b3\">查看</a></td>";
+						echo "</tr>";
+					}
+				?>
 					</table>
 				</div>
-			</div>
-			
+			</div>	
 		</div>
 	</div>
 	<!--<header>header</header>

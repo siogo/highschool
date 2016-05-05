@@ -36,5 +36,15 @@
 		}
 		mkdir("homework/".iconv("UTF-8","GB2312",$teacher)."/".iconv("UTF-8","GB2312",$time));
 		mysql_query("INSERT into tb_onlinestu (online_author,online_title,course_id,yaoqiu,online_publishtime) VALUES ('".$tid."','".$name."','".$course."','".$yaoqiu."','".$time."')");
+		$result_b = mysql_query("SELECT * FROM tb_onlinestu WHERE online_author = '".$tid."' order by online_id desc limit 0,1");
+		while ($row_b = mysql_fetch_array($result_b)) {
+			$online_id =  $row_b['online_id'];
+		}
+		
+		$result = mysql_query("SELECT * FROM tb_choosecourse WHERE course_id = '".$course."'");
+		while ($row = mysql_fetch_array($result)) {
+			$student_id = $row['student_id'];
+			mysql_query("INSERT into tb_worksub (student_id,online_id) VALUES ('".$student_id."','".$online_id."')");
+		}
 	}
 ?>

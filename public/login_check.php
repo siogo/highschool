@@ -33,7 +33,8 @@
 					setcookie("username", $username);
 					setcookie("is_login", "1");
 					setcookie("group", $group);
-					setcookie("id", $result['student_id']);					
+					setcookie("id", $result['student_id']);	
+					setcookie("name",$result['chinese_name']);				
 					echo '{"success":"1","msg":"登录成功"}';
 				}else{
 					echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';
@@ -52,6 +53,7 @@
 				setcookie("is_login", "1");
 				setcookie("group", $group);
 				setcookie("id", $result['teacher_id']);
+				setcookie("name",$result['chinese_name']);
 				echo '{"success":"1","msg":"登录成功"}';
 			}else{
 				echo '{"success":"0","msg":"登录失败,用户名或密码错误"}';

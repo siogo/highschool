@@ -37,15 +37,14 @@
 				<div class="dz">
 				    <ul>
 					<?php
-						// if(isset($_COOKIE["username"])){
-						// 	$result = mysql_query("SELECT * FROM ")
-						// 	echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
-						// }else{
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["name"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>
 					   <li><a href="register.php">注册</a></li>
 					<?php
-						// }
+						}
 					?>
 					</ul>
 				</div>
@@ -64,7 +63,7 @@
 			   <img src="img/zx-act.png"/>
 			</div>
 			<div style="position:relative">
-			    <div class="tulip" style="position:absolute;top:100px;">
+			    <div class="tulip" style="position:absolute">
 			    <?php  
 		        	$result = mysql_query('SELECT * FROM tb_paragraph order by para_id desc limit 0,1');
 		        	while ($row = mysql_fetch_array($result)) {

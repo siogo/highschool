@@ -67,7 +67,7 @@
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="addwork.php">发布作业</a></span>&nbsp;&nbsp;
-				<span class="teac"><a href="###">统计信息</a></span>
+				<span class="teac"><a href="homeworkmanage.php">管理作业</a></span>
 			</div>
 		</div>
 

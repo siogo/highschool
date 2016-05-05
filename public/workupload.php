@@ -40,7 +40,7 @@
             }else{
                 move_uploaded_file($_FILES["file"]["tmp_name"], $src. $_FILES["file"]["name"]);
                 echo "已经上传" . $src . $_FILES["file"]["name"];
-                mysql_query("UPDATE tb_onlinestu SET state = '1' WHERE course_id = '".$course_id."'");
+                mysql_query("UPDATE tb_worksub SET state = '1', filename = '".$_FILES["file"]["name"]."' WHERE online_id = '".$wid."' AND student_id = '".$_COOKIE['id']."'");
             }
         }
     }else{

@@ -54,8 +54,8 @@
 				<div class="dz">
 				    <ul>
 					<?php
-						if(isset($_COOKIE["username"])){
-							echo "<div class=\"dlz\">Hi:<span>".$_COOKIE["username"]." </span><a href=\"logout.php\">[退出]</a></div>";
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["name"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
 						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>

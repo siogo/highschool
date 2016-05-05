@@ -26,7 +26,18 @@
 				    <li><a href="###" class="w-bc">文章赏析</a></li>
 			    </ul>
 				<div class="dz">
-				    <div class="dlz">Hi:<span>张三哈</span><a href="#">[退出]</a></div>
+				    <ul>
+					<?php
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["name"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						}else{
+					?>
+					   <li><a href="login.php">登录</a></li>
+					   <li><a href="register.php">注册</a></li>
+					<?php
+						}
+					?>
+					</ul>
 				</div>
 			</nav>
 		</div>
@@ -51,21 +62,30 @@
 					</tr>
 			<?php  
 
-				$result = mysql_query("SELECT * FROM tb_choosecourse WHERE student_id = '".$_COOKIE['id']."'");
+				$result = mysql_query("SELECT * FROM tb_choosecourse WHERE student_id = '".$_COOKIE['id']."'");		
 				while ($row = mysql_fetch_array($result)) {
 					$flag = '0';
 					$result_a = mysql_query("SELECT * FROM tb_onlinestu WHERE course_id = '".$row['course_id']."'");
 					while ($row_a = mysql_fetch_array($result_a)) {
 						echo "<tr class=\"bj\">";
-						echo 		"<td>".$row_a['online_author']."</td>";
-						echo 		"<td><a href=\"worksubmit.php?wid=".$row_a['online_id']."\">".$row_a['online_title']."</a></td>";
-						echo 		"<td>".'#'."</td>";
-						echo 		"<td>".'#'."</td>";
-						if($row_a['state'] == '0'){
-							$state = "未完成";
-						}else{
-							$state = "已完成";
+						$result_c = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$row_a['online_author']."'");
+						while ($row_c = mysql_fetch_array($result_c)) {
+							echo 	"<td>".$row_c['chinese_name']."</td>";
 						}
+						
+						echo 		"<td><a href=\"worksubmit.php?wid=".$row_a['online_id']."\">".$row_a['online_title']."</a></td>";
+						echo 		"<td>".date("Y-m-d",$row_a['online_publishtime'])."</td>";
+						echo 		"<td>".'#'."</td>";
+						$result_b = mysql_query("SELECT * FROM tb_worksub WHERE online_id = '".$row_a['online_id']."' AND student_id = '".$_COOKIE['id']."'");
+						while ($row_b = mysql_fetch_array($result_b)) {
+							if($row_b['state'] == '0'){
+								$state = "未完成";
+							}else{
+								$state = "已完成";
+							}
+
+						}
+						
 						echo 		"<td>".$state."</td>";
 						echo "</tr>";
 					}
