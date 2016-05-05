@@ -3,7 +3,7 @@
 	<head>
 		<title>欢迎使用高校师生互动平台管理后台</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="../../css/manage.css" type="text/css">
+		<link rel="stylesheet" href="../css/manage.css" type="text/css">
 	</head>
 	
 	<body>

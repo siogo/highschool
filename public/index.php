@@ -37,14 +37,15 @@
 				<div class="dz">
 				    <ul>
 					<?php
-						if(isset($_COOKIE["username"])){
-							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
-						}else{
+						// if(isset($_COOKIE["username"])){
+						// 	$result = mysql_query("SELECT * FROM ")
+						// 	echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						// }else{
 					?>
 					   <li><a href="login.php">登录</a></li>
 					   <li><a href="register.php">注册</a></li>
 					<?php
-						}
+						// }
 					?>
 					</ul>
 				</div>

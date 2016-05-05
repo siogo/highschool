@@ -6,7 +6,7 @@
 	<head>
 		<title>欢迎使用高校师生互动平台管理后台</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="../../css/manage.css" type="text/css">
+		<link rel="stylesheet" href="../css/manage.css" type="text/css">
 	</head>
 	
 	<body>
@@ -71,7 +71,7 @@
 								}else{
 									echo "<td width='560' align='left'>".mb_substr($row['para_content'],0,10,'utf8').'...'."</td>";
 								}
-								echo "<td width='160' align='left'><a href='javascript:void(0);' onclick='del(this);'>删除</a></td>";
+								echo "<td width='160' align='left'><a class=\"del\" href='javascript:void(0);'>删除<span style = \"display:none\">".$row['para_id']."</span></a></td>";
 								echo "</tr>";
 							}
 							//$flag = true;
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 
-		<script>
+		<script type="text/javascript">
 			var url = "<?php echo $_SERVER['PHP_SELF']; ?>";			
 			var page = "<?php echo $page+1; ?>";
 			var total_page = "<?php echo $total_page ?>";
@@ -125,3 +125,23 @@
 				}
 			}
 		</script>
+	<script src="../js/jquery-1.10.1.min.js"></script>
+	<script src="../js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var del = $('.del');
+			for (var i = 0; i < del.length; i++) {
+				$(del[i]).click(function(){
+					var val = $(this).find('span').text();
+					$.post("del.php", {pid:val,state:'1'}, function(data){
+						if(data == '1'){
+							window.location.reload();
+							alert("删除成功");
+						}
+					})
+				})
+			}
+		})
+	</script>
+	</body>
+</html>
