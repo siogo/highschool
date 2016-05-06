@@ -61,7 +61,7 @@
 				}
 			}else{
 				$query = "";
-			}
+			}			
 			$result = mysqli_query($this->con,$query);
 			if(!$result){
 				echo '{"msg":"插入失败，请检查参数是否正确！","success":"0"}';
