@@ -27,8 +27,8 @@
 				<div class="dz">
 				    <ul>
 					<?php
-						if(isset($_COOKIE["username"])){
-							echo "<div class=\"dlz\">Hi:<span>".$_COOKIE["username"]." </span><a href=\"logout.php\">[退出]</a></div>";
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["name"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
 						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>
@@ -47,7 +47,7 @@
 			    当前位置：发布文章
 			</div>
 			<div class="return">
-			    <a href="#">返回</a>
+			    <a href="javascript:history.back(-1);">返回</a>
 			</div>
 			<div class="k-1">
 			    <form>
@@ -77,7 +77,7 @@
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 						    <td class="bt">
 							    <div style="margin-bottom:20px">类型</div>  
 							</td>
@@ -89,7 +89,7 @@
                                     </select>
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 						    <td class="bt" valign="top">
 							    <div>文章正文</div>
@@ -128,7 +128,7 @@
 			var content = $('#content1').val();
 			var list = $('#list').val();
 			$.post('./addarti_hou.php',{title:title,content:content,list:list},function(state){
-				console.log(state);
+				alert(state);
 			});
 		})
 	});

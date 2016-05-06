@@ -19,10 +19,10 @@
 		    <h1 class="logo">师生互动平台</h1>
 			<nav class="link">
 			    <ul class="o-nav">
-			        <li class="active"><a href="###" class="s-bc">首页</a></li>
-				    <li><a href="###" class="f-bc">发布文章</a></li>
-				    <li><a href="###" class="d-bc">在线答疑</a></li>
-				    <li><a href="###" class="w-bc">文章赏析</a></li>
+			       <li class="active"><a href="index.php" class="s-bc">首页</a></li>
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>				    
+				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
+				    <li><a href="setinfo.php" class="d-bc">个人中心</a></li>
 			    </ul>
 				<div class="dz">
 				    <ul>
@@ -47,7 +47,7 @@
 			    当前位置:我的作业>>作业列表
 			</div>
 		    <div class="return">
-			    <a href="#">返回</a>
+			    <a href="javascript:history.back(-1);">返回</a>
 			</div>
 			<div class="zuoy" style="height: 376px; overflow-y: scroll;">
 			    <table>

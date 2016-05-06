@@ -1,8 +1,10 @@
-<?php  	
+<?php  
+	
 	header("Content-Type:text/html;charset=UTF-8");
 	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
 	mysql_select_db("highschool");
-	mysql_query("set names 'utf8'");	
+	mysql_query("set names 'utf8'");
+	
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -97,15 +99,17 @@
 					    	
 					    ?>
 					    </div>
-					    <div class="wz-nr">
+					    <div class="wz-nr" style="text-indent：30px;letter-spacing:2px;line-height:30px;margin-left:10px; font-size: 16px;">
 					    <?php  
 					    		$str = substr($row['para_content'],0,299)."...";
 					    		echo "<pre>".$str;
-					    	
-
 					    ?>
 					        </pre>
-						    <div class="wz-xq"><?php echo "<a class=\"link\" href=\"#\"><span style=\"display:none;\">".$row['para_id']."</span>";} ?><b>查看全文>></b></a></div>
+						    <div class="wz-xq">
+					            
+						    	<?php 
+						    	echo "<a class=\"link\" href=\"#\"><span style=\"display:none;\">".$row['para_id']."</span>";} 
+						    	?><b>查看全文>></b></a></div>
 						    
 					    </div>
 					</div>
@@ -222,7 +226,9 @@
             pauseOnAction: false,
 					
 		});
-				
+		
+		$('.tulip').css({top:($('.all-wz').height()*0.3)}); 
+
 		$('.zxwz').click(function(){
 			$('.none').show();
 			$('.zxwz').hide();

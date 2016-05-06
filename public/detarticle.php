@@ -32,10 +32,22 @@
 				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
 			    </ul>
 				<div class="dz">
-				    <ul>
+				    <!-- <ul>
 					<?php
 						if(isset($_COOKIE["username"])){
 							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\">".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						}else{
+					?>
+					   <li><a href="login.php">登录</a></li>
+					   <li><a href="register.php">注册</a></li>
+					<?php
+						}
+					?>
+					</ul> -->
+					<ul>
+					<?php
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span>".$_COOKIE["name"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
 						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>
@@ -50,7 +62,7 @@
 	</header>
     <div id="content" style="background:none;border:1px solid #333;width:998px">	
 	    <div class="wzxqk">
-		    <div class="wz">
+		    <div class="wz" style="font-size:16px;">
 			    当前位置：文章赏析>>文章详情
 			</div>
 			<div class="return">
@@ -67,7 +79,22 @@
 				</div>
 				<div class="xian"></div>
 				<div class="writer">
-				    <span class="zzhe">小编林青霞</span>&nbsp;&nbsp;
+				<?php		
+						$account = $row['account'];
+						$type = $row['type'];
+						if($type == 'student'){
+							$result_e = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$account."'");
+							while ($row_e = mysql_fetch_array($result_e)) {
+								echo "<span class=\"zzhe\">".$row_e['chinese_name']."</span>&nbsp;&nbsp;";
+							}
+						}else{
+							$result_e = mysql_query("SELECT * FROM tb_teacher WHERE teacher_id = '".$account."'");
+							while ($row_e = mysql_fetch_array($result_e)) {
+								echo "<span class=\"zzhe\">".$row_e['chinese_name']."</span>&nbsp;&nbsp;";
+							}
+						}
+				?>
+				    
 					<span class="time"><?php echo date("Y-m-d H:i:s",$row['para_publish']); ?></span>
 				</div>
 				<div class="tu">
@@ -93,10 +120,18 @@
 					</p> -->
 				</div>
 				<div class="dzan">
-				    已有20人点赞<a href="#"><img src="img/good.png"/></a>
+				    已有
+			<?php  
+
+				$res = mysql_query("SELECT count(*) from tb_zan WHERE para_id = '".$_GET['pid']."'");
+				$rs = mysql_fetch_array($res);
+				echo $numrows = $rs[0];
+
+			?>人点赞
+				    <a><img id="zan" src="img/good.png"/></a>
 				</div>
 				<div class="pl">
-				    <input id="txt" type="text"/><img id="btn" src="img/comments.png" style="margin-left: 10px;">
+				    <input id="txt" type="text"/><input id="btn" type="button">
 				</div>
 				<div class="plzs">
 				    <?php  
@@ -240,6 +275,12 @@
 				}
 			})
 		});
+
+		$('#zan').click(function(){
+			$.post("zan.php", {pid:pid}, function(data){
+				alert(data);
+			})
+		})
 	});
 	// var child_message = document.getElementById('child_message');
 	// child_message.onclick = function(){

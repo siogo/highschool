@@ -32,8 +32,8 @@
 				<div class="dz">
 					<ul>
 					<?php
-						if(isset($_COOKIE["username"])){
-							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\">".$_COOKIE["username"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\" style=\"display:none\">".$_COOKIE["username"]."</span>".$_COOKIE["name"]." </a><a href=\"logout.php\">[退出]</a></div>";
 						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>

@@ -194,14 +194,14 @@ body,ul,h1{
 .wzxqk .jt-article .tu{width:980px;height:400px;overflow:hidden;}
 .wzxqk .jt-article .tu>img{width:980px;}
 .wzxqk .jt-article  .wznr>p{font-size:18px !important;line-height:25px !important;letter-spacing:2px !important;}
-.wzxqk .jt-article  .wznr{margin-bottom:20px;}
+.wzxqk .jt-article  .wznr{margin-bottom:20px;font-size:18px !important;line-height:25px !important;letter-spacing:2px !important;}
 .wzxqk .jt-article .dzan{color:#f00;font-size:18px;letter-spacing:1px;margin-bottom:10px;}
-.wzxqk .jt-article .dzan>a>img{width:30px;}
+.wzxqk .jt-article .dzan>a>img{width:25px;margin-left:5px;}
 .wzxqk .jt-article .pl{margin-bottom:30px}
 .wzxqk .jt-article .pl>input[type=text]{width:910px;height:30px;border:1px solid #999;}
-.wzxqk .jt-article .pl>input[type=button]{background:url(../img/pl.png) no-repeat;background-size:35px;vertical-align:middle;width:40px;height:30px;margin-left:10px;}
+.wzxqk .jt-article .pl>input[type=button]{background:url(../img/hfu.png) no-repeat;background-size:33px;vertical-align:middle;width:40px;height:30px;margin-left:10px;border:none;outline:none;}
 .wzxqk .jt-article .plzs .plr,.wzxqk .jt-article .plnr{display:inline-block;font-size:18px;color:#666;}
-.wzxqk .jt-article .plzs .plr>img{width:60px;vertical-align:bottom}
+.wzxqk .jt-article .plzs .plr>img{width:60px;vertical-align:bottom;border-radius: 10px; padding: 5px;}
 .wzxqk .jt-article .plnr{margin-left:10px}
 .wzxqk .jt-article .plnr .z>span{color:#f00;}
 .wzxqk .jt-article .plnr .time>img{width:30px;vertical-align:middle;}
@@ -448,6 +448,12 @@ a{text-decoration:none;color:#333}
 	  line-height:30px;
 	  margin-left:10px;
 }
+#content .rmwz .wz .wz-nr{
+	  text-indent:30px;
+	  letter-spacing:2px;
+	  line-height:30px;
+	  margin-left:10px;
+}
 #content .rmwz .wz .wz-nr>p{
 	  text-indent:30px;
 	  letter-spacing:2px;
@@ -457,7 +463,8 @@ a{text-decoration:none;color:#333}
 #content .rmwz .wz .wz-nr .wz-xq{
 	  margin-right:10px;
 	  margin-bottom:17px;
-	  margin-left:600px;
+	  margin-left:560px;
+	  font-size: 14px;
 }
 #content .rmwz .wz .wz-nr .wz-xq>a{
 	  color:#667ebd;
@@ -837,9 +844,8 @@ footer{
 .xke .xk-tj{text-align:center;margin-top:20px;}
 .xke .xk-tj input{width:70px;height:25px;}
 .border_co{
-    border:1px solid black;
     padding: 4px 0 4px 0;
-    background-color: #ccc;
+    background-color: #ddd;
     box-shadow: 4px 4px #AAA;
     border-radius: 8px 8px;
 }
