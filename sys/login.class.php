@@ -35,8 +35,7 @@
 			}
 			if(isset($username)){
 				if($type == 'teacher'){
-					$result = $this->connect->select('tb_teacher','account',$username);					
-
+					$result = $this->connect->select('tb_teacher','account',$username);										
 					if($result == false){
 						return false;
 					}else{
