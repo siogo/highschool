@@ -67,8 +67,9 @@
 								echo "<td width='560' align='left'>".$row['sex']."</td>";
 								echo "<td width='180' align='left'>".$row['tel']."</td>";
 								echo "<td width='560' align='left'>".$row['account']."</td>";
-								echo "<td width='160' align='left'><a href='javascript:void(0);' onclick='del(this);'>删除</a></td>";
+								echo "<td width='160' align='left'><a class=\"del\" href='javascript:void(0);'>删除<span style = \"display:none\">".$row['teacher_id']."</span></a></td>";
 								echo "</tr>";
+								
 							}
 							//$flag = true;
 						?>
@@ -128,7 +129,7 @@
 				for (var i = 0; i < del.length; i++) {
 					$(del[i]).click(function(){
 						var val = $(this).find('span').text();
-						$.post("del.php", {pid:val,state:'1'}, function(data){
+						$.post("del.php", {pid:val,state:'3'}, function(data){
 							if(data == '1'){
 								window.location.reload();
 								alert("删除成功");

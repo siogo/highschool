@@ -70,7 +70,7 @@
 								// }else{
 								// 	echo "<td width='560' align='left'>".mb_substr($row['para_content'],0,10,'utf8').'...'."</td>";
 								// }
-								echo "<td width='160' align='left'><a href='javascript:void(0);' onclick='del(this);'>删除</a></td>";
+								echo "<td width='160' align='left'><a class=\"del\" href='javascript:void(0);'>删除<span style = \"display:none\">".$row['online_id']."</span></a></td>";
 								echo "</tr>";
 							}
 							//$flag = true;
@@ -123,4 +123,22 @@
 					window.location.href=url+'?page='+page;
 				}
 			}
+		</script>
+		<script src="../js/jquery-1.10.1.min.js"></script>
+		<script src="../js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var del = $('.del');
+				for (var i = 0; i < del.length; i++) {
+					$(del[i]).click(function(){
+						var val = $(this).find('span').text();
+						$.post("del.php", {pid:val,state:'4'}, function(data){
+							if(data == '1'){
+								window.location.reload();
+								alert("删除成功");
+							}
+						})
+					})
+				}
+			})
 		</script>
