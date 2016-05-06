@@ -6,7 +6,6 @@
 	mysql_query("set names 'utf8'");
 
 ?>
-
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>

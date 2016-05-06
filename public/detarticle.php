@@ -93,10 +93,10 @@
 					</p> -->
 				</div>
 				<div class="dzan">
-				    已有20人点赞<a href="#"><img src="img/zan.png"/></a>
+				    已有20人点赞<a href="#"><img src="img/good.png"/></a>
 				</div>
 				<div class="pl">
-				    <input id="txt" type="text"/><input id="btn" type="button"/>
+				    <input id="txt" type="text"/><img id="btn" src="img/comments.png" style="margin-left: 10px;">
 				</div>
 				<div class="plzs">
 				    <?php  

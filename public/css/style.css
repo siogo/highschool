@@ -836,3 +836,18 @@ footer{
 .xke .xz input{width:15px;height:15px;}
 .xke .xk-tj{text-align:center;margin-top:20px;}
 .xke .xk-tj input{width:70px;height:25px;}
+.border_co{
+    border:1px solid black;
+    padding: 4px 0 4px 0;
+    background-color: #ccc;
+    box-shadow: 4px 4px #AAA;
+    border-radius: 8px 8px;
+}
+#child_input{
+    position: absolute;
+    left:0;    
+    top:0;
+}
+#child{position:relative;left:50px;padding-top:8px;}
+.hide{display:none;}
+.show{display:block;}
