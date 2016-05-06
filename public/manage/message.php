@@ -15,8 +15,8 @@
 			<div id="side">
 				<ul>
 					<li><a href="welcome.php">管理后台</a></li>
-					<li><a href="javascript:void(0);" onclick="audit(this);">文章列表</a></li>
-					<li><a href="message.php">留言列表</a></li>
+					<li><a href="audit.php">文章列表</a></li>
+					<li><a href="javascript:void(0);">留言列表</a></li>
 					<li><a href="homework.php">作业列表</a></li>
 					<li><a href="student.php">学生信息</a></li>
 					<li><a href="teacher.php">教师信息</a></li>
@@ -48,7 +48,7 @@
 							if(!$flag){
 								$con = new connect();
 								$num_rows = $con->num_rows('tb_test');
-								if($num_rows > 10){
+								if($num_rows > 1){
 									$total_page = ceil($num_rows/10);
 									if($page > $total_page) {
 										$page = $total_page;

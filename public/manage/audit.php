@@ -48,7 +48,7 @@
 							if(!$flag){
 								$con = new connect();
 								$num_rows = $con->num_rows('tb_paragraph');
-								if($num_rows > 10){
+								if($num_rows > 1){
 									$total_page = ceil($num_rows/10);
 									if($page > $total_page) {
 										$page = $total_page;
