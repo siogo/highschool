@@ -210,7 +210,7 @@
 		</div>	    
 	</div>
 	<div id="child_input" class="hide">
-		<div style="background-color:#CCC;opacity:0.9">
+		<div style="background-color:#f7f7f7;opacity:0.9">
 			<p>留言板</p>
 			<textarea name="chile_message" cols="50" rows="5" id="chile_message" placeholder="说点什么吧......" autofocus="autofocus"></textarea>
 			<input type="button" name="cancel" id="cancel" value="关闭" />
@@ -258,8 +258,8 @@
 				$('#child_input').show();
 				var x = event.clientX;
 				var y = event.clientY;						
-				$('#child_input').css("left", (x+(i*30)));
-				$('#child_input').css("top", (y+(i*450)));
+				$('#child_input').css("left", (x+(i*20)));
+				$('#child_input').css("top", (y+(i*380)));
 				key = m_id;
 			});
 		}
