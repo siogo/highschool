@@ -12,9 +12,9 @@
 			<nav class="link">
 			    <ul class="o-nav">
 			        <li class="active"><a href="index.php" class="s-bc">首页</a></li>
-				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>
-				    <!-- <li><a href="###" class="d-bc">在线答疑</a></li> -->
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>				    
 				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
+				    <li><a href="setinfo.php" class="d-bc">个人中心</a></li>
 			    </ul>
 				<div class="dz">
 				    <ul>
@@ -49,12 +49,16 @@
 				<span class="stu"><a href="./myhomework.php">我的作业</a></span>
 			</div>
 			<div class="Xx">
+			    <span class="grxx"><a href="./videosub.php">发布视频</a></span>&nbsp;&nbsp;
+				<span class="grxx"><a href="./videolist.php">视频播放</a></span>
+			</div>
+			<div class="Xx">
 			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;
 				<span class="teac"><a href="###">管理学生</a></span>
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="addwork.php">发布作业</a></span>&nbsp;&nbsp;
-				<span class="teac"><a href="###">统计信息</a></span>
+				<span class="teac"><a href="homeworkmanage.php">管理作业</a></span>
 			</div>
 		</div>
 		

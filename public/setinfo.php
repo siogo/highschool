@@ -62,6 +62,10 @@
 				<span class="stu"><a href="./myhomework.php?page=1">我的作业</a></span>
 			</div>
 			<div class="Xx">
+			    <span class="grxx"><a href="./videosub.php">发布视频</a></span>&nbsp;&nbsp;
+				<span class="grxx"><a href="./videolist.php">视频播放</a></span>
+			</div>
+			<div class="Xx">
 			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;
 				<span class="teac"><a href="###">管理学生</a></span>
 			</div>

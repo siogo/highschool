@@ -17,10 +17,10 @@
 		    <h1 class="logo">师生互动平台</h1>
 			<nav class="link">
 			    <ul class="o-nav">
-			        <li><a href="###" class="s-bc">首页</a></li>
-				    <li class="active"><a href="###" class="f-bc">发布文章</a></li>
-				    <li><a href="###" class="d-bc">在线答疑</a></li>
-				    <li><a href="###" class="w-bc">文章赏析</a></li>
+			        <li><a href="index.php" class="s-bc">首页</a></li>
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>				    
+				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
+				    <li><a href="setinfo.php" class="d-bc">个人中心</a></li>
 			    </ul>
 				<div class="dz">
 				    <div class="dlz">Hi:<span>张三哈</span><a href="#">[退出]</a></div>
