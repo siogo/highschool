@@ -27,9 +27,9 @@
 			<nav class="link">
 			    <ul class="o-nav">
 			        <li class="active"><a href="index.php" class="s-bc">首页</a></li>
-				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>
-				    <li><a href="###" class="d-bc">在线答疑</a></li>
+				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>				    
 				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
+				    <li><a href="setinfo.php" class="d-bc">个人中心</a></li>
 			    </ul>
 				<div class="dz">
 				    <!-- <ul>
@@ -210,9 +210,9 @@
 		</div>	    
 	</div>
 	<div id="child_input" class="hide">
-		<div style="background-color:#f0d">
+		<div style="background-color:#CCC;opacity:0.9">
 			<p>留言板</p>
-			<textarea name="chile_message" cols="50" rows="5" id="chile_message" placeholder="请输入留言内容......" autofocus="autofocus"></textarea>
+			<textarea name="chile_message" cols="50" rows="5" id="chile_message" placeholder="说点什么吧......" autofocus="autofocus"></textarea>
 			<input type="button" name="cancel" id="cancel" value="关闭" />
 			<input type="button" name="up" id="up" value="提交" />
 		</div>
@@ -223,7 +223,7 @@
 	    <div class="footer">
 		      Copyright @ Plain and Simple | Design by WangXiang
 		</div>
-	</footer>
+	</footer>	
 <script src="js/jquery-1.10.1.min.js"></script>
 <script src="js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
@@ -253,15 +253,19 @@
 		var key;
 		var reply = $('.reply');
 		for (var i = 0; i < reply.length; i++) {
-			$(reply[i]).click(function(){
+			$(reply[i]).click(function(event){
 				var m_id = $(this).parent().find('span').eq(1).text();
 				$('#child_input').show();
+				var x = event.clientX;
+				var y = event.clientY;						
+				$('#child_input').css("left", (x+(i*30)));
+				$('#child_input').css("top", (y+(i*450)));
 				key = m_id;
 			});
 		}
 		$('#cancel').click(function(){
 			$('#child_input').hide();
-		});
+		});		
 
 		$('#up').click(function(){
 			var content = $('#chile_message').val();
