@@ -28,7 +28,7 @@
             }else{
                 move_uploaded_file($_FILES["file"]["tmp_name"], $src. $_FILES["file"]["name"]);
                 echo "已经上传" . $src . $_FILES["file"]["name"];
-                mysql_query("INSERT INTO tb_paragraph (para_title,para_content,para_kind,para_video,account,type) VALUES ('".$title."', '".$content."','video','".$src.$_FILES["file"]["name"]."','".$id."','".$type."')");
+                mysql_query("INSERT INTO tb_video (video_title,video_content,video_kind,account,type,video_publish) VALUES ('".$title."', '".$content."','".$src.$_FILES["file"]["name"]."','".$id."','".$type."','".time()."')");
             }
         }
     }else{

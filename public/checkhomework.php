@@ -103,12 +103,12 @@
 								<th>姓名</th>
 								<th>联系电话</th>
 							</tr>
-					<?php  
-
+					<?php
 						$oid = $_GET['oid'];
 						$result = mysql_query("SELECT * FROM tb_worksub WHERE online_id = '".$oid."' AND state = '0'");
 						while($row = mysql_fetch_array($result)){
 							echo "<tr class=\"hg\">";
+							$student_id = $row['student_id'];
 							$result_a = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$student_id."'");
 							while ($row_a = mysql_fetch_array($result_a)) {	
 								echo 	"<td>".$row_a['student_id']."</td>";

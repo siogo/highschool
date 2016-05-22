@@ -79,7 +79,7 @@
 			<div class="ssym">
 			    <div class="sszs">
 			        <?php  
-			        	$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_kind = 'video' order by para_id desc limit $offset,$pagesize");
+			        	$result = mysql_query("SELECT * FROM tb_video order by video_id desc limit $offset,$pagesize");
 			        	while ($row = mysql_fetch_array($result)) {
 			        		
 			        		echo "<div class=\"ssjg\">";
@@ -87,8 +87,8 @@
 					        echo		"<img src=\"img/form.png\" style=\"width: 32px; margin-top: 9px; margin-left: 9px;\"/>";
 					    	echo 	"</div>";
 					    	echo	"<div class=\"bt\">";
-					        echo		"<a href=\"#\">".$row['para_title']."</a>";
-					    	echo    	"<span style=\"display:none\">".$row['para_id']."</span>";
+					        echo		"<a href=\"#\">".$row['video_title']."</a>";
+					    	echo    	"<span style=\"display:none\">".$row['video_id']."</span>";
 					    	echo 	"</div>";	
 				    		echo "</div>";
 			        	}

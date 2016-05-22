@@ -48,7 +48,7 @@
 			    当前位置:管理作业
 			</div>
 		    <div class="return">
-			    <a href="#" style=" color:#333">返回</a>
+			    <a href="javascript:history.go(-1)" style=" color:#333">返回</a>
 			</div>
 			<div class="cj">
 			    <div class="sx">
@@ -62,7 +62,7 @@
 				<div class="cjlb">
 				    <table border="1">
 					    <tr>
-						    <th>作业题目作业题目作业题目作业题目作业题目</th>
+						    <th>作业题目</th>
 							<th style="width:150px">发布时间</th>
 							<th style="width:150px">截止时间</th>
 							<th style="width:90px">完成情况</th>

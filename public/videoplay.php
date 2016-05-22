@@ -52,9 +52,10 @@
 			    <div class="sszs" style="width: 800px; margin: 0 auto;">
 			    	<?php 
 			    		$vid = $_GET['vid'];
-			    		$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_id = '".$vid."'");
+			    		$result = mysql_query("SELECT * FROM tb_video WHERE video_id = '".$vid."'");
 			    		while ($row = mysql_fetch_array($result)) {
-			    			echo "<video src=\"".$row['para_video']."\" controls=\"controls\" style=\"width: 800px; height: 100%;\">";
+			    			
+			    			echo "<video src=\"".$row['video_kind']."\" controls=\"controls\" style=\"width: 800px; height: 100%;\">";
 			    		}
 			    	?>
 			    	<!-- <video src="video/VID_20150828_083659.MP4" controls="controls" style="width: 800px; height: 100%;"> -->
