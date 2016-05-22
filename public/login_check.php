@@ -1,4 +1,6 @@
 <?php 
+	date_default_timezone_set("PRC");
+	error_reporting(0);
 	include "../sys/connect.class.php";
 	include "../sys/login.class.php";
 

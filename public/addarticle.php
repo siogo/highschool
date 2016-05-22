@@ -1,4 +1,6 @@
 <?php
+	date_default_timezone_set("PRC");
+	error_reporting(0);
 	if(!isset($_COOKIE['is_login'])){
 		echo "<script>
 				var confirm = confirm('您未登录,是否跳转到登录页面');

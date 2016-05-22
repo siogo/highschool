@@ -1,4 +1,6 @@
 <?php
+	date_default_timezone_set("PRC");
+	error_reporting(0);
 	require_once('../sys/connect.class.php');
 	$con = new connect();
 	$email = $_POST['email'];

@@ -857,3 +857,7 @@ footer{
 #child{position:relative;left:50px;padding-top:8px;}
 .hide{display:none;}
 .show{display:block;}
+/*忘记密码*/
+.wjmm{height:520px;width:693px;margin:0 auto;}
+.wjmm .mm{margin-top:80px;margin-bottom:50px;}
+.zh input{width:400px;height:35px;font-size:18px;}
