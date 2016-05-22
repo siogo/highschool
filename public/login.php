@@ -43,7 +43,7 @@
 					    <td colspan="2">
 						   <input type="button" name="submit" id="login" value="登录"/> 
 						   <a href="register.php" class="a-kk">还没账号？</a>
-						   <a href="#" class="a-kk">忘记密码？</a>
+						   <a href="reset.php" class="a-kk">忘记密码？</a>
 						</td>
 					</tr>
 				</table>

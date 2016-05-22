@@ -110,5 +110,76 @@
 			$num_rows = mysqli_fetch_array($result);
 			return $num_rows[0];
 		}
+
+		public function check_email($email)
+		{
+			$sql_stu = 'SELECT `email` FROM `tb_student` WHERE email='.'\''.$email.'\'';
+			$sql_tea = 'SELECT `account` FROM `tb_teacher` WHERE account='.'\''.$email.'\'';			
+			$result = $this->con->query($sql_stu);
+			
+			if($result->num_rows > 0)
+			{			
+				return true;
+			}else{
+				$result = $this->con->query($sql_tea);
+				if($result->num_rows > 0)
+				{
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+
+		public function check_phone($email, $phone)
+		{
+			$sql_stu = 'SELECT `tel` FROM `tb_student` WHERE email='.'\''.$email.'\'';
+			$sql_tea = 'SELECT `tel` FROM `tb_teacher` WHERE account='.'\''.$email.'\'';
+			
+			$result = $this->con->query($sql_stu);
+			
+			if($result->num_rows > 0)
+			{
+				$row = $result->fetch_assoc();				
+				if($phone == $row['tel'])
+				{
+					return true;
+				}else{
+					return false;
+				}			
+			}else{
+				$result = $this->con->query($sql_tea);
+				if($result->num_rows > 0)
+				{
+					$row = $result->fetch_assoc();				
+					if($phone == $row['tel'])
+					{
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}
+		}
+
+		public function update_pwd($email, $newpwd)
+		{
+			$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
+			$newpwd = md5($newpwd);
+			if(preg_match($match, $email))
+			{
+				$sql = 'UPDATE tb_student SET password='.'\''.$newpwd.'\''.' WHERE email='.'\''.$email.'\'';
+			}else{
+				$sql = 'UPDATE tb_teacher SET password='.'\''.$newpwd.'\''.' WHERE account='.'\''.$email.'\'';
+			}			
+			$result = $this->con->query($sql);
+			
+			if($result)
+			{
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 ?>

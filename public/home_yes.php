@@ -1,4 +1,6 @@
 <?php
+	date_default_timezone_set("PRC");
+	error_reporting(0);
 	if(!isset($_COOKIE["username"])){
 		echo "<script>alert(\"抱歉您还未登录，请先登录\");location.href=\"login.php\";</script>";
 	}

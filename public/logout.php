@@ -1,5 +1,6 @@
 <?php
-
+	date_default_timezone_set("PRC");
+	error_reporting(0);
 	setcookie("username","",time()-1);
 	setcookie("is_login","",time()-1);
 	setcookie("group","",time()-1);
