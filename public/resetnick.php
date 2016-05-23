@@ -1,21 +1,30 @@
 <?php
-	header('Content-Type:text/html;charset=utf-8');	
-	if($_SERVER['REQUEST_METHOD'] == 'POST')
-	{		
-		include '../sys/connect.class.php';
-		$con = new connect();		
-		$phone = $_POST['phone_number'];
-		$email = $_COOKIE['email'];
+	header('Content-Type:text/html;charset=utf-8');
+	error_reporting(0);
+	if(isset($_COOKIE) && $_COOKIE['email'] != '')
+	{
+		if($_SERVER['REQUEST_METHOD'] == 'POST')
+		{		
+			include '../sys/connect.class.php';
+			$con = new connect();		
+			$phone = $_POST['phone_number'];
+			$email = $_COOKIE['email'];
 
-		if($con->check_phone($email, $phone))
-		{
-			//setcookie('phone', $email, time()+3600);						
-			echo '<script>window.location.href="resetpwd.php";</script>';
-			die;
-		}else{
-			echo "<script>alert('手机号不正确,请重新输入');</script>";
+			if($con->check_phone($email, $phone))
+			{
+				setcookie('nickcheck', 1, time()+3600);						
+				echo '{"success":"1"}';
+				die;
+			}else{
+				echo '{"success":"0"}';
+				die;
+			}
 		}
+	}else{
+		echo '<script>window.location.href="reset.php"</script>';
+		die;
 	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -43,7 +52,7 @@
 				    <img src="img/anquan.png" />
 				</div>
                 <div class="zh">
-				    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				    <form>
 					    <div style="margin-bottom:20px;font-size:12px;">
 						    为了你的帐号安全，请完成身份验证：
 						</div>
@@ -58,9 +67,9 @@
 						<label style="display:block;margin-bottom:20px;margin-top:30px;font-weight:bold">
 						    手机号码：
 						</label>
-						<input type="text" name="phone_number" placeholder="请输入手机号码" style="width:250px;"/>
+						<input type="text" name="phone_number" id="phone" placeholder="请输入手机号码" style="width:250px;"/>
 						<br/>
-						 <input type="submit" value="下一步" style="height:42px;width:404px;background:#3f89ec;color:#fff;border:none;margin-top:70px;" />
+						 <input type="button" value="下一步" id="next" style="height:42px;width:404px;background:#3f89ec;color:#fff;border:none;margin-top:70px;" />
 					</form>
                 </div>				
 			</div>
@@ -73,6 +82,39 @@
 		      Copyright&nbsp;&#64;&nbsp;Plain and Simple&nbsp;&#124;&nbsp;Design by WangXiang
 		</div>
 	</footer>
+	<script>
+		var next = document.getElementById('next');
+		var phone = document.getElementById('phone');
+
+		next.onclick = function (){
+			if(phone.value == '')
+			{
+				alert('手机号为空');
+				return;
+			}else{
+				var data = 'phone_number='+phone.value;
+			}
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.open('POST', window.location.href, true);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.send(data);
+
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4)
+				{
+					var json_obj = JSON.parse(xhr.responseText);
+					if(json_obj.success == 0)
+					{
+						alert('错误的手机号!');
+					}else{
+						window.location.href = 'resetpwd.php';
+					}
+				}
+			};
+		};
+	</script>
 </body>
 </html>
 

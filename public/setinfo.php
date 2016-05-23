@@ -391,6 +391,11 @@
 			var tel = $('#tel').val();
 			var sex = $('.xs-1').find('input:radio:checked').val();
 			var text = $('#txt').val();
+			if(group == '' || nickname == '' || tel == '' || sex == '' || text == '')
+			{
+				alert('内容不能为空!');
+				return;
+			}
 			$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
 				if(data == '1'){
 					alert("修改成功！");
@@ -400,7 +405,7 @@
 			});
 		});
 		//修改密码
-		$('#changepawd').click(function(){
+		$('#changepawd').click(function(){			
 			var password_old = $('#password_old').val();
 			var pawd_1 = $('#pawd_1').val();
 			var pawd_2 = $('#pawd_2').val();
@@ -437,7 +442,12 @@
         	});
 
         	$('.export').click(function() {
-        		var imageData = $('.image-editor').cropit('export');
+        		var imageData = $('.image-editor').cropit('export');        		
+        		if(imageData == undefined)
+        		{
+        			alert('请选择头像!');
+        			return;
+        		}
         		$.post('upload_toux.php',{img:imageData},function(data){
         			var obj = $.parseJSON(data);
         			if(obj.state){
