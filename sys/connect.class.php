@@ -37,7 +37,7 @@
 				$query = "SELECT * FROM $tablename LIMIT $start,$limit";
 			}else if($order_by != null && $sort != null){
 				$query = "SELECT * FROM $tablename ORDER BY $order_by $sort";
-			}
+			}			
 			$result = mysqli_query($this->con,$query);
 
 			$arr_length = mysqli_affected_rows($this->con);
