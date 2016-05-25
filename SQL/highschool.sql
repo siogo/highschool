@@ -234,7 +234,7 @@ CREATE TABLE `tb_teacher` (
 -- ----------------------------
 INSERT INTO `tb_teacher` VALUES ('zztest', 'bae5e3208a3c700e3db642b6631e95b9', '1', '杨铸', '', '', '', '', '0', null);
 INSERT INTO `tb_teacher` VALUES ('yangjian', 'bae5e3208a3c700e3db642b6631e95b9', '3', 'dannis', 'male', '', '13999999999', '我是一个老师', '17', './photo_head/379044496@qq.com/head.png');
-INSERT INTO `tb_teacher` VALUES ('yangjuhua', 'bae5e3208a3c700e3db642b6631e95b9', '4', '杨菊花', '', '', '', '', '0', null);
+INSERT INTO `tb_teacher` VALUES ('yangjuhua', 'bae5e3208a3c700e3db642b6631e95b9', '4', '杨菊英', '', '', '', '', '0', null);
 
 -- ----------------------------
 -- Table structure for tb_test

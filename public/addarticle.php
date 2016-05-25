@@ -1,11 +1,11 @@
 <?php
 	date_default_timezone_set("PRC");
 	error_reporting(0);
-	if(!isset($_COOKIE['is_login'])){
-		echo "<script>
-				var confirm = confirm('您未登录,是否跳转到登录页面');
-				if(confirm){window.location.href='login.php'}else{window.location.href='index.php'};
-			  </script>";		
+	header('Content-Type:text/html; charset=utf-8');
+	session_start();
+	if(!isset($_SESSION['passport']) || $_SESSION['passport'] != $_COOKIE['passport']){
+		echo "<script type='text/javascript'>alert('亲,请先登录才能发布文章哟!');window.location.href='index.php'</script>";	
+		die;		
 	}
 ?>
 <!DOCTYPE html>

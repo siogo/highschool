@@ -1,11 +1,11 @@
 <?php
 	date_default_timezone_set("PRC");
 	error_reporting(0);
-	if(!isset($_COOKIE['is_login'])){
-		echo "<script>
-				var confirm = confirm('您未登录,是否跳转到登录页面');
-				if(confirm){window.location.href='login.php'}else{window.location.href='index.php'};
-			  </script>";		
+	header('Content-Type:text/html; charset=utf-8');
+	session_start();
+	if(!isset($_SESSION['passport']) || $_SESSION['passport'] != $_COOKIE['passport']){
+		echo "<script type='text/javascript'>alert('亲,请先登录才能发布文章哟!');window.location.href='index.php'</script>";	
+		die;		
 	}
 ?>
 <!DOCTYPE html>
@@ -392,20 +392,13 @@
 			var reg = /1[0-9][0-9]{9}/;
 			var sex = $('.xs-1').find('input:radio:checked').val();
 			var text = $('#txt').val();
-			if(!reg.test(tel)){
-				alert("请输入正确格式电话");
-			}else{
-				$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
-					if(data == '1'){
-						alert("修改成功！");
-						$('.setion-2').fadeIn();
-						$('.setion-22').fadeOut();
-					}
-				});
-			}
 			if(group == '' || nickname == '' || tel == '' || sex == '' || text == '')
 			{
 				alert('内容不能为空!');
+				return;
+			}
+			if(!reg.test(tel)){
+				alert("请输入正确格式电话");
 				return;
 			}
 			$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
