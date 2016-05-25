@@ -29,7 +29,7 @@
 	if($group == 'student'){
 		if(strpos($username, "@") !== false)
 		{
-			$result = $check_class->get_email($username,$group);
+			$result = $check_class->get_email($username,$group);			
 			if($result !== false){
 				if($check_class->get_password($result['password'], $password)){
 					setcookie("username", $username);
