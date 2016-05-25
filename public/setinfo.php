@@ -237,11 +237,16 @@
 					    <form>
 					        <div>当前邮箱</div>
 						    <div>
-						        <input type="text"/>
+						        <input id="checkemail" type="text"/>
 						    </div>
-							<div>邮箱已验证</div>
+						    <div>
+							    <input id="btnsend" type="button" value="发送邮件" style="cursor: pointer;" />
+							</div>
 							<div>
-							    <input type="button" value="确认更改"/>
+						        <input id="yanzhengma" type="text"/ placeholder="请输入验证码">
+						    </div>
+							<div>
+							    <input id="btnchange" type="button" value="确认更改" style="cursor: pointer;" />
 							</div>
 						</form>
 					</div>
@@ -419,6 +424,35 @@
 			});
 
 		});
+
+		// 发送邮箱
+		var yanzheng;
+		var email;
+		$('#btnsend').click(function(){
+			email = $('#checkemail').val();
+			var regemail = /\w+[@]{1}\w+[.]\w+/;
+			if(!regemail.test(email)){
+				alert("请输入正确格式邮箱");
+			}else{
+				alert("邮件已发送");
+				$.post('smtpmailsend.php',{'email':email},function(data){					
+					yanzheng = data;
+				})	
+			}		
+		})
+		$('#btnchange').click(function(){
+			var text = $('#yanzhengma').val();
+			if(text == yanzheng){
+				alert("邮箱已经验证");
+				$.post('checkemail.php',{"email":email},function(data){
+				})
+				window.location.href = 'setinfo.php';
+			}else{
+				alert("邮箱验证不成功");
+			}
+		})
+
+
 		//修改密码
 		$('#changepawd').click(function(){			
 			var password_old = $('#password_old').val();
