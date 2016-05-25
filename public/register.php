@@ -34,6 +34,7 @@
 						</td>
 						<td class="kc-1">
 						    <input type="text" name="email" id="email" placeholder="必填项" />
+						    <span id="email_text" style="color:#f00;font-size:10px;position:absolute;left:860px;top:195px;"></span>
 						</td>
 					</tr>
 					<tr class="kc">
@@ -42,7 +43,8 @@
 						</td>
 						<td class="kc-1">
 						    <input type="password" name="password1" id="pass" placeholder="必填项" />
-						</td>
+						    <span id="strong" style="color:#f00;font-size:10px;position:absolute;left:860px;top:250px;"></span>
+						</td>						
 					</tr>
 					<tr class="kc">
 					    <td class="mc">
@@ -50,6 +52,7 @@
 						</td>
 						<td class="kc-1">
 						    <input type="password" name="password2" id="pass_confirm" placeholder="必填项" />
+						    <span id="comfirm" style="color:#f00;font-size:10px;position:absolute;left:860px;top:308px;"></span>
 						</td>
 					</tr>
 					<tr class="kc">
@@ -88,6 +91,7 @@
 						</td>
 						<td class="kc-1">
 						    <input type="text" name="tel" id="tel" placeholder="必填项" />
+						    <span id="phone" style="color:#f00;font-size:10px;position:absolute;left:860px;top:534px;"></span>
 						</td>
 					</tr>
 					<tr class="tj">

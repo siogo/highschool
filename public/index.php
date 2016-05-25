@@ -248,7 +248,7 @@
 
 		$('#search').click(function(){
 			var text = $('#txt').val();
-			window.location.href = "http://127.0.0.1/bs/highschool/public/search.php?search="+text;
+			window.location.href = "http://localhost/search.php?search="+text;
 		});
 
 

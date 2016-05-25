@@ -8,7 +8,7 @@
 			$this->connect = new connect();
 		}
 		
-		public function check_username($username,$type=NULL){
+		public function get_username($username,$type=NULL){
 			if($type==NULL){
 				return false;
 			}
@@ -20,7 +20,7 @@
 			}
 		}
 		
-		public function check_password($new_pwd, $password){
+		public function get_password($new_pwd, $password){
 			
 			if(md5($password) == $new_pwd){
 				return true;
@@ -29,7 +29,7 @@
 			}
 		}
 		
-		public function check_email($username,$type=NULL){
+		public function get_email($username,$type=NULL){
 			if($type == NULL){
 				return false;
 			}

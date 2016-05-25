@@ -1,23 +1,34 @@
 <?php
 
 	header('Content-Type:text/html;charset=utf-8');	
-	if($_SERVER['REQUEST_METHOD'] == 'POST')
+	error_reporting(0);
+	if(isset($_COOKIE) && $_COOKIE['nickcheck'] != '')
 	{
-		include '../sys/connect.class.php';
-		$con = new connect();
-		$newpwd = $_POST['newpwd'];
-		$comfirm = $_POST['comfirm'];
-		$email = $_COOKIE['email'];
-		if($newpwd != $comfirm)
+		if($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
-			echo '<script>alert("密码不一致，请重新输入");</script>';
-		}else{			
-			if($con->update_pwd($email, $newpwd))
+			include '../sys/connect.class.php';
+			$con = new connect();
+			$newpwd = $_POST['newpwd'];
+			$comfirm = $_POST['comfirm'];
+			$email = $_COOKIE['email'];
+			if($newpwd != $comfirm)
 			{
-				include 'logout.php';
-				echo '<script>alert("密码修改成功,请用新密码登录");window.location.href="login.php";</script>';
+				echo '{"success":"0"}';
+				die;
+			}else{			
+				if($con->update_pwd($email, $newpwd))
+				{
+					echo '{"success":"1"}';
+					die;
+				}else{
+					echo '{"success":"0"}';
+					die;
+				}
 			}
 		}
+	}else{
+		echo '<script>window.location.href="resetnick.php"</script>';
+		die;
 	}
 ?>
 <!DOCTYPE html>
@@ -51,15 +62,15 @@
 					        <label style="margin-bottom:20px;">
 						       新密码：
 						    </label>
-						    <input type="password" name="newpwd" style="margin-left:32px;"/>
+						    <input type="password" name="newpwd" id="newpwd" style="margin-left:32px;"/>
 						</div>
 						<div>
 						    <label style="margin-bottom:20px;">
 						        确认新密码：
 						    </label>
-						    <input type="password" name="comfirm" />
+						    <input type="password" id="comfirm" name="comfirm" />
 						</div>
-						<input type="submit" value="确定" style="height:42px;width:404px;background:#3f89ec;color:#fff;border:none;margin-top:60px;margin-left:105px;" />
+						<input type="button" id="next" value="确定" style="height:42px;width:404px;background:#3f89ec;color:#fff;border:none;margin-top:60px;margin-left:105px;" />
 					</form>
                 </div>				
 			</div>
@@ -72,6 +83,41 @@
 		      Copyright&nbsp;&#64;&nbsp;Plain and Simple&nbsp;&#124;&nbsp;Design by WangXiang
 		</div>
 	</footer>
+	<script>
+		var next = document.getElementById('next');
+		var newpwd = document.getElementById('newpwd');
+		var comfirm = document.getElementById('comfirm');
+
+		next.onclick = function (){
+			if(newpwd == '' && comfirm == '')
+			{
+				alert('内容为空!');
+				return;
+			}else{
+				var data = 'newpwd='+newpwd.value+'&comfirm='+comfirm.value;
+			}
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.open('POST', window.location.href, true);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.send(data);
+
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4)
+				{
+					var json_obj = JSON.parse(xhr.responseText);
+
+					if(json_obj.success == 0){
+						alert('两次密码输入不正确');						
+					}else{
+						alert('恭喜,密码修改成功!\r\n请使用新密码登录');
+						window.location.href = 'logout.php';
+					}
+				}
+			};
+		};
+	</script>
 </body>
 </html>
 
