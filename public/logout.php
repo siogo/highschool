@@ -7,5 +7,6 @@
 	setcookie("name","",time(-1));
 	setcookie("email","",time()-1);
 	setcookie("nickcheck","",time()-1);
+	setcookie("passport","",time()-1);
 	echo "<script>location.href=\"index.php\"</script>";
 ?>
