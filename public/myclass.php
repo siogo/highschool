@@ -48,7 +48,7 @@
 			    当前位置:我的课程
 			</div>
 		    <div class="return">
-			    <a href="#" style=" color:#333">返回</a>
+			    <a href="#" onClick="javascript :history.back(-1);" style=" color:#333">返回</a>
 			</div>
 			<div class="cj">
 			    <div class="sx">
@@ -58,9 +58,7 @@
 					<div>
 					    <a href="choosesource.php">选择课程</a>
 					</div>
-					<div>
-					    <a href="#">我的课表</a>
-					</div>
+					
 				</div>
 				<div class="cjlb">
 				    <table border="1">

@@ -65,11 +65,11 @@
 			</div>
 			<div class="Xx">
 			    <span class="grxx"><a href="./videosub.php">发布视频</a></span>&nbsp;&nbsp;
-				<span class="grxx"><a href="./videolist.php">视频播放</a></span>
+				<span class="grxx"><a href="./videolist.php?page=1">视频播放</a></span>
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;
-				<span class="teac"><a href="###">管理学生</a></span>
+				<span class="teac"><a href="studentgrade.php">管理学生</a></span>
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="addwork.php">发布作业</a></span>&nbsp;&nbsp;
@@ -389,8 +389,23 @@
 			var group = $('#group').text();
 			var nickname = $('#nickname').val();
 			var tel = $('#tel').val();
+			var reg = /1[0-9][0-9]{9}/;
 			var sex = $('.xs-1').find('input:radio:checked').val();
 			var text = $('#txt').val();
+<<<<<<< HEAD
+			if(!reg.test(tel)){
+				alert("请输入正确格式电话");
+			}else{
+				$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
+					if(data == '1'){
+						alert("修改成功！");
+						$('.setion-2').fadeIn();
+						$('.setion-22').fadeOut();
+					}
+				});
+			}
+			
+=======
 			if(group == '' || nickname == '' || tel == '' || sex == '' || text == '')
 			{
 				alert('内容不能为空!');
@@ -403,6 +418,7 @@
 					$('.setion-22').fadeOut();
 				}
 			});
+>>>>>>> 7f02c2b3e1056b80389da30bcb7e4976bd21a61b
 		});
 		//修改密码
 		$('#changepawd').click(function(){			

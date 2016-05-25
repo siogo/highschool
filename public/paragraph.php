@@ -17,6 +17,9 @@
 
 	//计算总页数
 	$pages = intval($numrows/$pagesize);
+	if($numrows == 0){
+		$pages = 1;
+	}
 
 	//如果有余数page+1;
 	if($numrows%$pagesize){
