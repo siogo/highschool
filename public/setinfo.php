@@ -392,7 +392,10 @@
 			var reg = /1[0-9][0-9]{9}/;
 			var sex = $('.xs-1').find('input:radio:checked').val();
 			var text = $('#txt').val();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 90869ab840a9cbada5b37e737cba2c58a0c6892c
 			if(!reg.test(tel)){
 				alert("请输入正确格式电话");
 			}else{
@@ -404,8 +407,11 @@
 					}
 				});
 			}
+<<<<<<< HEAD
 			
 
+=======
+>>>>>>> 90869ab840a9cbada5b37e737cba2c58a0c6892c
 			if(group == '' || nickname == '' || tel == '' || sex == '' || text == '')
 			{
 				alert('内容不能为空!');
@@ -418,7 +424,10 @@
 					$('.setion-22').fadeOut();
 				}
 			});
+<<<<<<< HEAD
 
+=======
+>>>>>>> 90869ab840a9cbada5b37e737cba2c58a0c6892c
 		});
 		//修改密码
 		$('#changepawd').click(function(){			
