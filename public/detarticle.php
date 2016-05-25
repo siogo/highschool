@@ -130,7 +130,7 @@
 				echo $numrows = $rs[0];
 
 			?>人点赞
-				    <a><img id="zan" src="img/good.png"/></a>
+				    <a><img id="zan" src="img/good.png" style="cursor: pointer;" /></a>
 				</div>
 				<div class="pl">
 				    <input id="txt" type="text"/><input id="btn" type="button">
@@ -284,7 +284,14 @@
 
 		$('#zan').click(function(){
 			$.post("zan.php", {pid:pid}, function(data){
-				alert(data);
+				if(data == 1){
+					alert("点赞成功");
+				}else if(data == 2){
+					alert("请不要重复点赞");
+				}else{
+					alert("您未登录，请先登录");
+					window.location.href = "login.php";
+				}
 			})
 		})
 	});

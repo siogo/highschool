@@ -19,11 +19,11 @@
         if ($_FILES["file"]["error"] > 0){
             echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
         }else{
-            echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-            echo "Type: " . $_FILES["file"]["type"] . "<br />";
-            echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-            echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-
+            
+            echo "上传成功";
+            echo "<script>";
+            echo "window.location.href = \"setinfo.php\"";
+            echo "</script>";
             if (file_exists($src . $_FILES["file"]["name"])){
                 echo $_FILES["file"]["name"] . "该文件已经存在";
             }else{
@@ -34,6 +34,8 @@
         }
     }else{
         echo "非法文件";
-        echo $_FILES["file"]["type"];
+        echo "<script>";
+        echo "window.location.href = \"videosub.php\"";
+        echo "</script>";
     }
 ?>

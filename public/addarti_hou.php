@@ -12,9 +12,19 @@
 	$time = time();
 	$user = $_COOKIE["id"];
 	$type = $_COOKIE['group'];
+	$flag = 0;
 
-	mysql_query("INSERT into tb_paragraph (para_content,para_title,account,para_kind,para_publish,type) VALUES ('".$connect."','".$title."','".$user."','".$list."','".$time."','".$type."')");
-	echo "添加成功";
+	$result = mysql_query("SELECT * FROM tb_paragraph WHERE para_title = '".$title."'");
+	while ($row = mysql_fetch_array($result)) {
+		$flag = 1;
+	}
+	
+	if($flag == 0){
+		mysql_query("INSERT into tb_paragraph (para_content,para_title,account,para_kind,para_publish,type) VALUES ('".$connect."','".$title."','".$user."','".$list."','".$time."','".$type."')");
+		echo "添加成功";
+	}else{
+		echo "文章标题重复";
+	}
 
 	
 ?>

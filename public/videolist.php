@@ -6,7 +6,7 @@
 	mysql_select_db("highschool");
 	mysql_query("set names 'utf8'");
 
-	$re = mysql_query("SELECT count(*) from tb_paragraph WHERE para_kind = 'video'"); 
+	$re = mysql_query("SELECT count(*) from tb_video"); 
 	$rs = mysql_fetch_array($re);
 
 	//记录总条数
@@ -17,6 +17,9 @@
 
 	//计算总页数
 	$pages = intval($numrows/$pagesize);
+	if($numrows == 0){
+		$pages = 1;
+	}
 
 	//如果有余数page+1;
 	if($numrows%$pagesize){

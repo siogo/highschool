@@ -36,7 +36,7 @@
 			    当前位置：上传视频
 			</div>
 			<div class="return">
-			    <a href="#">返回</a>
+			    <a href="#" onClick="javascript:history.back(-1);">返回</a>
 			</div>
 			<div class="k-1">
 			    <form action="videoupload.php" method="post" enctype="multipart/form-data">

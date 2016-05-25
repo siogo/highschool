@@ -28,7 +28,7 @@
 			    当前位置:我的成绩
 			</div>
 		    <div class="return">
-			    <a href="#" style=" color:#333">返回</a>
+			    <a href="#" onClick="javascript :history.back(-1);" style=" color:#333">返回</a>
 			</div>
 			<div class="cj">
 			    <div class="sx">

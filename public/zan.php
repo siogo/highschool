@@ -11,18 +11,24 @@
 	$uid = $_COOKIE['id'];
 	$flag = '0';
 	
-	$result = mysql_query("SELECT * FROM tb_zan WHERE type = '".$type."' AND uid = '".$uid."'");
-	while ($row = mysql_fetch_array($result)) {
-		if($row['para_id'] == $pid){
-			$flag = '1';
+	$is_login = $_COOKIE['is_login'];
+	if($is_login){
+		$result = mysql_query("SELECT * FROM tb_zan WHERE type = '".$type."' AND uid = '".$uid."'");
+		while ($row = mysql_fetch_array($result)) {
+			if($row['para_id'] == $pid){
+				$flag = '1';
+			}
 		}
-	}
-	if($flag == '0'){
-		mysql_query("INSERT INTO tb_zan (para_id,uid,state,type) VALUES ('".$pid."','".$uid."','1','".$type."')");
-		echo "点赞成功";
+		if($flag == '0'){
+			mysql_query("INSERT INTO tb_zan (para_id,uid,state,type) VALUES ('".$pid."','".$uid."','1','".$type."')");
+			echo "1";
+		}else{
+			echo "2";
+		}
 	}else{
-		echo "请不要重复点赞";
+		echo "0";
 	}
+		
 	
 
 ?>
