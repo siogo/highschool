@@ -5,6 +5,7 @@
 		include '../sys/connect.class.php';
 		$con = new connect();
 		$email = $_POST['email'];
+		//$email = htmlentities($email);
 		$match = "/\w+@(\w|\d)+\.\w{2,3}/i";
 		if($email != '')
 		{

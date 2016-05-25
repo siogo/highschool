@@ -285,7 +285,8 @@
 					}
 				}			
 			}
-			if($group == 'teacher'){					
+			if($group == 'teacher'){
+				global $con;
 				$result = $con->select('tb_teacher','email',$email);
 				if($result != false)
 				{
