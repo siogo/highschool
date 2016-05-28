@@ -4,7 +4,7 @@
 	header('Content-Type:text/html; charset=utf-8');
 	session_start();
 	if(!isset($_SESSION['passport']) || $_SESSION['passport'] != $_COOKIE['passport']){
-		echo "<script type='text/javascript'>alert('亲,请先登录才能发布文章哟!');window.location.href='index.php'</script>";	
+		echo "<script type='text/javascript'>alert('亲,请先登录才能进入个人中心哟!');window.location.href='index.php'</script>";	
 		die;		
 	}
 ?>
