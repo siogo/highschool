@@ -11,9 +11,12 @@
 	$tid = $_COOKIE['id'];
 	$teacher = $_COOKIE['username'];
 	$yaoqiu = $_POST['yaoqiu'];
+	$dealtime = $_POST['dealtime'];
 	$time = time();
 	$flag = '0';
-
+	$d = date('Y-m-d H:i:s',$time);
+	$timestr = date('Y-m-d H:i:s',strtotime("$d +".$dealtime." day"));
+	$endtime = strtotime($timestr);
 	
 	if($name){
 		$b = mysql_query("SELECT online_title FROM tb_onlinestu WHERE online_author = '".$tid."'");
@@ -36,7 +39,7 @@
 			mkdir("homework/".iconv("UTF-8","GB2312",$teacher)."/");
 		}
 		mkdir("homework/".iconv("UTF-8","GB2312",$teacher)."/".iconv("UTF-8","GB2312",$time));
-		mysql_query("INSERT into tb_onlinestu (online_author,online_title,course_id,yaoqiu,online_publishtime) VALUES ('".$tid."','".$name."','".$course."','".$yaoqiu."','".$time."')");
+		mysql_query("INSERT into tb_onlinestu (online_author,online_title,course_id,yaoqiu,online_publishtime,online_endtime) VALUES ('".$tid."','".$name."','".$course."','".$yaoqiu."','".$time."','".$endtime."')");
 		$result_b = mysql_query("SELECT * FROM tb_onlinestu WHERE online_author = '".$tid."' order by online_id desc limit 0,1");
 		while ($row_b = mysql_fetch_array($result_b)) {
 			$online_id =  $row_b['online_id'];

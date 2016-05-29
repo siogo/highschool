@@ -47,7 +47,7 @@
     <div id="content" style="width:998px;border:1px solid #333;height:530px;padding:0">	
 	    <div class="wk zylb" style="background:#fff;">
 		    <div class="wz">
-			    当前位置:管理作业
+			    当前位置:管理成绩
 			</div>
 		    <div class="return">
 			    <a href="javascript:history.go(-1)" style=" color:#333">返回</a>
@@ -76,10 +76,11 @@
 							$result_b = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row['student_id']."'");
 							while ($row_b = mysql_fetch_array($result_b)) {
 								echo "<td>".$row_b['chinese_name']."</td>";
-								if($row['grade']){
-									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;display:none;\"/><span class=\"grade\">".$row['grade']."</span></td>";
-								}else{
+								if($row['grade'] == '-1'){
+									
 									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;\"/><span class=\"grade\"></span></td>";
+								}else{
+									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;display:none;\"/><span class=\"grade\">".$row['grade']."</span></td>";
 								}
 								
 							}
@@ -150,7 +151,7 @@
 						}
 						
 					}else{
-						arrgrade.push('0');
+						arrgrade.push('-1');
 					}
 				}
 			}

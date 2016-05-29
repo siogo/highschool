@@ -83,7 +83,11 @@
 								echo "<td>".$row_a['course_name']."</td>";
 								echo "<td>".$row_a['credits']."</td>";
 								echo "<td>".$row_a['course_type']."</td>";
-								echo "<td class=\"grade\"><span>".$row['grade']."</span></td>";
+								if($row['grade'] == '-1'){
+									echo "<td class=\"grade\"><span>无</span></td>";
+								}else{
+									echo "<td class=\"grade\"><span>".$row['grade']."</span></td>";
+								}
 								echo "</tr>";
 							}
 						}

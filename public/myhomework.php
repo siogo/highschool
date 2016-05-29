@@ -75,7 +75,7 @@
 						
 						echo 		"<td><a href=\"worksubmit.php?wid=".$row_a['online_id']."\">".$row_a['online_title']."</a></td>";
 						echo 		"<td>".date("Y-m-d",$row_a['online_publishtime'])."</td>";
-						echo 		"<td>".'#'."</td>";
+						echo 		"<td>".date("Y-m-d",$row_a['online_endtime'])."</td>";
 						$result_b = mysql_query("SELECT * FROM tb_worksub WHERE online_id = '".$row_a['online_id']."' AND student_id = '".$_COOKIE['id']."'");
 						while ($row_b = mysql_fetch_array($result_b)) {
 							if($row_b['state'] == '0'){
