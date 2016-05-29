@@ -7,6 +7,10 @@
 		echo "<script type='text/javascript'>alert('亲,请先登录才能进入个人中心哟!');window.location.href='index.php'</script>";	
 		die;		
 	}
+	mysql_connect("localhost","root","123456") or die("Could not connect:".mysql_error());
+    mysql_select_db("highschool");
+    mysql_query("set names 'utf8'");
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -84,7 +88,26 @@
 			<div class="box">
 		        <div class="flexslider" id="three">
 			        <ul class="slides">
-				        <li>
+			        <?php 
+			        	$result = mysql_query("SELECT * FROM tb_paragraph order by count_read desc limit 0,2");
+			        	while ($row = mysql_fetch_array($result)) {
+			        		echo "<li>";
+			        		echo 	"<div class=\"title\">";
+			        		echo 		"<a href=\"detarticle.php?pid=".$row['para_id']."\">".$row['para_title']."</a>";
+			        		echo 	"</div>";
+			        		echo 	"<div class=\"time\">";
+			        		echo 	date('Y-m-d H:i:s',$row['para_publish']);
+			        		echo 	"</div>";
+			        		echo 	"<p class=\"w\">";
+			        		echo 		"<a href=\"detarticle.php?pid=".$row['para_id']."\">";
+			        		echo 	mb_substr($row['para_content'],0,140,'utf-8');
+			        		echo 		"</a>";
+			        		echo 	"</p>";
+			        		echo 	"<div class=\"yz\">";
+			        		echo 	"阅读（".$row['count_read']."）|转载（".$row['count_send']."）|评论（".$row['count_discuss']."）";
+			        	}
+			        ?>
+				        <!-- <li>
 					        <div class="title">
 						        <a href="###">标题</a>
 						    </div>
@@ -115,7 +138,7 @@
 						    <div class="yz">
 						        阅读（5）|转载（5）|评论（5）
 						    </div>
-					    </li>
+					    </li> -->
 				    </ul>
 			    </div>
 			</div>

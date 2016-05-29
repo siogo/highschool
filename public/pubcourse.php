@@ -19,8 +19,8 @@
 				<div class="dz">
 				    <ul>
 					<?php
-						if(isset($_COOKIE["name"])){
-							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\">".$_COOKIE["name"]." </span></a><a href=\"logout.php\">[退出]</a></div>";
+						if(isset($_COOKIE["name"])){	
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\" style=\"display:none\">".$_COOKIE["username"]."</span>".$_COOKIE["name"]." </a><a href=\"logout.php\">[退出]</a></div>";
 						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>
@@ -86,8 +86,19 @@
 					    </div>
 					</div>
 					<div>
-					    <label style="margin-left:33px;">学分</label>
-						<input type="text" id="credits" />
+					    <span>学分</span>
+						<select id="credits">
+							<option value="1">1分</option>
+							<option value="2">2分</option>
+							<option value="3">3分</option>
+							<option value="4">4分</option>
+							<option value="5">5分</option>
+							<option value="6">6分</option>
+							<option value="7">7分</option>
+							<option value="8">8分</option>
+							<option value="9">9分</option>
+							<option value="10">10分</option>
+						</select>
 					</div>
 					<div>
 					    <label>上课教室</label>
@@ -128,6 +139,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var user = $('#user').text();
+		console.log(user);
 		$('#headphoto').attr('src','photo_head/'+user+"/head.png");
 
 		var group = $('#group').text();
@@ -144,23 +156,24 @@
 			var classroom = $('#classroom').val();
 			var time = $('#time').val();
 			var jieshu = $('#jieshu').val();
-			$.post("addcourse.php",{course_name:course_name,type:course_type,credits:credits,classroom:classroom,time:time,jieshu:jieshu}, function(data){
-				switch(data){
-					case '0':
-						alert("添加失败(课程信息不全)");
-						break;
-					case '1':
-						alert("添加成功");
-						window.location.href = "setinfo.php";
-						break;
-					case '2':
-						alert("添加失败(课程重复)");
-						break;
-					case '3':
-						alert("添加失败(教室冲突)");
-						break;
-				}
-			});
+			console.log(credits);
+			// $.post("addcourse.php",{course_name:course_name,type:course_type,credits:credits,classroom:classroom,time:time,jieshu:jieshu}, function(data){
+			// 	switch(data){
+			// 		case '0':
+			// 			alert("添加失败(课程信息不全)");
+			// 			break;
+			// 		case '1':
+			// 			alert("添加成功");
+			// 			window.location.href = "setinfo.php";
+			// 			break;
+			// 		case '2':
+			// 			alert("添加失败(课程重复)");
+			// 			break;
+			// 		case '3':
+			// 			alert("添加失败(教室冲突)");
+			// 			break;
+			// 	}
+			// });
 		});
 
 	})	

@@ -76,10 +76,11 @@
 							$result_b = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row['student_id']."'");
 							while ($row_b = mysql_fetch_array($result_b)) {
 								echo "<td>".$row_b['chinese_name']."</td>";
-								if($row['grade']){
-									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;display:none;\"/><span class=\"grade\">".$row['grade']."</span></td>";
-								}else{
+								if($row['grade'] == '-1'){
+									
 									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;\"/><span class=\"grade\"></span></td>";
+								}else{
+									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;display:none;\"/><span class=\"grade\">".$row['grade']."</span></td>";
 								}
 								
 							}
@@ -150,7 +151,7 @@
 						}
 						
 					}else{
-						arrgrade.push('0');
+						arrgrade.push('-1');
 					}
 				}
 			}
