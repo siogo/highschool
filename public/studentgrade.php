@@ -47,7 +47,7 @@
     <div id="content" style="width:998px;border:1px solid #333;height:530px;padding:0">	
 	    <div class="wk zylb" style="background:#fff;">
 		    <div class="wz">
-			    当前位置:管理作业
+			    当前位置:管理成绩
 			</div>
 		    <div class="return">
 			    <a href="javascript:history.go(-1)" style=" color:#333">返回</a>
