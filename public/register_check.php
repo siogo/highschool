@@ -58,7 +58,7 @@
 		}
 		if(preg_match("/[_|\-|+|=|*|!|@|#|$|%|^|&|(|)]{3,}/",$password))
         {
-            $score ++ ; 
+            $score+=2 ; 
         }
 		if(strlen($password) < 8)
 		{
