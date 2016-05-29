@@ -87,11 +87,11 @@
 							    <div style="margin-bottom:20px">截止时间</div>
 							</td>
 							<td>
-								<select style="width:460px;height:30px;">
-								      <option>1天</option>
-								      <option>3天</option>
-								      <option>5天</option>
-								      <option>7天</option>
+								<select id="dealtime" style="width:460px;height:30px;">
+								      <option value="1">1天</option>
+								      <option value="3">3天</option>
+								      <option value="5">5天</option>
+								      <option value="7">7天</option>
 								</select>
 							</td>
 						</tr>
@@ -134,7 +134,9 @@
 			var content = $('#yaoqiu').val();
 			var course = $('#course').val();
 			var yaoqiu = $('#yaoqiu').val();
-			$.post("addhomework.php", {name:name,course:course,yaoqiu:yaoqiu}, function(data){
+			var dealtime = $('#dealtime').val();
+			console.log(dealtime);
+			$.post("addhomework.php", {name:name,course:course,yaoqiu:yaoqiu,dealtime:dealtime}, function(data){
 			 	switch(data){
 			 		case '0':
 			 			alert("添加失败(信息不全)");

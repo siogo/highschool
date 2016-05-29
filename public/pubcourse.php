@@ -42,19 +42,19 @@
 			</div>
 			<div class="Xx">
 			    <span class="grxx"><a style="cursor:pointer" class="active">我的信息</a></span>&nbsp;&nbsp;
-				<span class="stu"><a href="./myscore.php">我的成绩</a></span>
+				<span class="stu"><a href="myscore.php">我的成绩</a></span>
 			</div>
 			<div class="Xx">
-			    <span class="stu"><a href="./myclass.php">我的课程</a></span>&nbsp;&nbsp;
-				<span class="stu"><a href="./myhomework.php">我的作业</a></span>
+			    <span class="stu"><a href="myclass.php">我的课程</a></span>&nbsp;&nbsp;
+				<span class="stu"><a href="myhomework.php">我的作业</a></span>
 			</div>
 			<div class="Xx">
-			    <span class="grxx"><a href="./videosub.php">发布视频</a></span>&nbsp;&nbsp;
-				<span class="grxx"><a href="./videolist.php">视频播放</a></span>
+			    <span class="grxx"><a href="videosub.php">发布视频</a></span>&nbsp;&nbsp;
+				<span class="grxx"><a href="videolist.php">视频播放</a></span>
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="pubcourse.php">发布课程</a></span>&nbsp;&nbsp;
-				<span class="teac"><a href="###">管理学生</a></span>
+				<span class="teac"><a href="studentgrade.php">管理学生</a></span>
 			</div>
 			<div class="Xx">
 			    <span class="teac"><a href="addwork.php">发布作业</a></span>&nbsp;&nbsp;
@@ -151,7 +151,7 @@
 						break;
 					case '1':
 						alert("添加成功");
-						window.location.href = "http://127.0.0.1/bs/highschool/public/setinfo.php";
+						window.location.href = "setinfo.php";
 						break;
 					case '2':
 						alert("添加失败(课程重复)");
