@@ -35,7 +35,7 @@
 		    <div class="wz">
 			    当前位置:我的作业>>作业列表>>当前作业
 			</div>
-		    <div class="return-1">
+		    <div class="return-1" style="margin-left:-20px;">
 			    <a href="#">返回</a>
 			</div>
 			<div class="jtzy">

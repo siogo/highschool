@@ -286,6 +286,7 @@
 			$.post("zan.php", {pid:pid}, function(data){
 				if(data == 1){
 					alert("点赞成功");
+					window.location.reload();
 				}else if(data == 2){
 					alert("请不要重复点赞");
 				}else{

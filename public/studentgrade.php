@@ -22,7 +22,7 @@
 		    <h1 class="logo">师生互动平台</h1>
 			<nav class="link">
 			    <ul class="o-nav">
-			        <li class="active"><a href="###" class="s-bc">首页</a></li>
+			         <li class="active"><a href="index.php" class="s-bc">首页</a></li>
 				    <li><a href="addarticle.php" class="f-bc">发布文章</a></li>				    
 				    <li><a href="paragraph.php?page=1" class="w-bc">文章赏析</a></li>
 				    <li><a href="setinfo.php" class="d-bc">个人中心</a></li>
@@ -31,7 +31,7 @@
 				    <ul>
 					<?php
 						if(isset($_COOKIE["name"])){	
-							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\" style=\"display:none\">".$_COOKIE["username"]."</span>".$_COOKIE["name"]." </a><a href=\"logout.php\">[退出]</a></div>";
+							echo "<div class=\"dlz\">Hi:<a href=\"setinfo.php\"><span id=\"user\" style=\"display:none\">".$_COOKIE["username"]."</span>".$_COOKIE["name"]." </a><a href=\"logout.php\">[退出]</a><span id=\"userid\" style=\"display:none;\">".$_COOKIE['id']."</span></div>";
 						}else{
 					?>
 					   <li><a href="login.php">登录</a></li>
@@ -50,7 +50,7 @@
 			    当前位置:管理作业
 			</div>
 		    <div class="return">
-			    <a href="#" style=" color:#333">返回</a>
+			    <a href="javascript:history.go(-1)" style=" color:#333">返回</a>
 			</div>
 			<form style="text-align:center;">
 			    <div class="cj" style="text-align:center;">
@@ -67,33 +67,38 @@
 						$result = mysql_query("SELECT * FROM tb_choosecourse WHERE teacher_id = '".$_COOKIE['id']."'");
 						while ($row = mysql_fetch_array($result)) {
 							echo "<tr style=\"height:30px;\">";
-							echo "<td>".$row['course_id']."</td>";
+							echo "<td class=\"course_id\">".$row['course_id']."</td>";
 							$result_a = mysql_query("SELECT * FROM tb_course WHERE course_id = '".$row['course_id']."'");
 							while ($row_a = mysql_fetch_array($result_a)) {
-								echo "<td>".$row_a['course_name']."</td>";
+								echo "<td style=\"width:280px;\">".$row_a['course_name']."</td>";
 							}
-							echo "<td>".$row['student_id']."</td>";
+							echo "<td class=\"student_id\">".$row['student_id']."</td>";
 							$result_b = mysql_query("SELECT * FROM tb_student WHERE student_id = '".$row['student_id']."'");
 							while ($row_b = mysql_fetch_array($result_b)) {
 								echo "<td>".$row_b['chinese_name']."</td>";
-								echo "<td><input type=\"text\" style=\"border:none;outline:none;width:60px;\"/></td>";
+								if($row['grade']){
+									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;display:none;\"/><span class=\"grade\">".$row['grade']."</span></td>";
+								}else{
+									echo "<td><input class=\"gradeinput\" type=\"text\" style=\"border:none;outline:none;width:60px;\"/><span class=\"grade\"></span></td>";
+								}
+								
 							}
 							
 							echo "</tr>";
 						}
 					?>
-						    <tr style="height:30px;">
+						    <!-- <tr style="height:30px;">
 						        <td>课程号</td>
 							    <td>毛泽东思想和中国特色社会主义理论体系概论</td>
 							    <td>学号</td>
 							    <td>成绩</td>
 							    <td>
 								  <input type="text"  style="border:none;outline:none;width:60px;"/></td>
-						    </tr>
+						    </tr> -->
 					    </table>
 				    </div>
 					<div style="margin-top:30px;">
-					    <input type="button" value="提交" style="width:80px;height:30px;font-size:16px;" />
+					    <input type="button" id="button" value="提交" style="width:80px;height:30px;font-size:16px;" />
 					</div>
 			    </div>
 			</form>
@@ -106,6 +111,66 @@
 		      Copyright&nbsp;&#64;&nbsp;Plain and Simple&nbsp;&#124;&nbsp;Design by WangXiang
 		</div>
 	</footer>
+<script src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+			
+
+		$('#button').click(function(){
+			var userid = $('#userid').text();
+			var course_id = $('.course_id');
+			var student_id = $('.student_id');
+			var grade = $('.grade');
+			var inputgrade = $('.gradeinput');
+			var arrcourse = new Array();
+			var arrstudent = new Array();
+			var arrgrade = new Array();
+			var flag = 0;
+			for (var i = 0; i < course_id.length; i++) {
+				var text1 = $(course_id[i]).text();	//课程id
+				var text2 = $(student_id[i]).text();//学生id
+				var text3 = $(grade[i]).text();		//已经存在的成绩
+				var text4 = $(inputgrade[i]).val();	//输入的成绩
+				
+				
+
+				if(text3 != 0){
+					
+				}else{
+					arrcourse.push(text1);
+					arrstudent.push(text2);
+					
+					if(text4){
+						if (text4 > 0&&text4<= 100) {
+							flag = 1;
+							arrgrade.push(text4);
+						}else{
+							alert("成绩输入有错误,请重新输入！！");
+							break;
+						}
+						
+					}else{
+						arrgrade.push('0');
+					}
+				}
+			}
+			console.log(arrcourse);
+			console.log(arrstudent);
+			console.log(arrgrade);
+			console.log(userid);
+
+			
+			if (flag == 1) {
+				$.post('addgrade.php',{"course":arrcourse,"student":arrstudent,"teacher":userid,"grade":arrgrade},function(data){
+					if(data == '1'){
+						alert("成绩修改成功");
+						window.location.reload() = "studentgrade.php";
+					}
+				})
+			}
+		})
+	})
+</script>
 </body>
 </html>
 

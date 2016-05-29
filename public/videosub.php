@@ -67,7 +67,9 @@
 								<input type='hidden' name='MAX_FILE_SIZE' value='6000000' /> 
 								<input type="file" name="file" id="file" /> 
 								<br />
-								<input type="submit" name="submit" value="Submit" />
+								<div style="margin-left:240px;margin-top:10px">
+								    <input type="submit" name="submit" value="上传" />
+								</div>
 							</td>
 						</tr>
 					</table>

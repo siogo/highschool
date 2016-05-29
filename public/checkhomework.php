@@ -47,7 +47,7 @@
 			    当前位置：作业管理
 			</div>
 			<div class="return">
-			    <a href="#">返回</a>
+			    <a href="javascript:history.go(-1)">返回</a>
 			</div>
 			<div class="tjxx">
 			    <div>

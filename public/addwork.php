@@ -59,20 +59,20 @@
 				    <table>
 					    <tr>
 						    <td class="bt">
-							    <div style="margin-bottom:20px">作业题目</div>
+							    <div style="margin-bottom:20px;width:80px;">作业题目</div>
 							</td>
 							<td class="nr-1">
-							    <div style="margin-bottom:20px">
-								    <textarea id="name"></textarea>
+							    <div>
+								    <textarea id="name" style="height:40px;"></textarea>
 							    </div>
 							</td>
 						</tr>
 						<tr>
 							<td class="bt">
-							    <div style="margin-bottom:20px">课程</div>
+							    <div>课程</div>
 							</td>
 							<td>
-								<select id="course">
+								<select id="course" style="width:460px;height:30px;">
 								<?php  
 									$re = mysql_query("SELECT course_name,course_id FROM tb_course WHERE teacher = '".$tid."'");
 									while ($roa = mysql_fetch_array($re)) {
@@ -86,6 +86,14 @@
 							<td class="bt">
 							    <div style="margin-bottom:20px">截止时间</div>
 							</td>
+							<td>
+								<select style="width:460px;height:30px;">
+								      <option>1天</option>
+								      <option>3天</option>
+								      <option>5天</option>
+								      <option>7天</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 						    <td class="bt">
@@ -93,7 +101,7 @@
 							</td>
 							<td class="nr-2">
 							    <div>
-								    <textarea id="yaoqiu"></textarea>
+								    <textarea id="yaoqiu" style="height:180px;"></textarea>
 								</div>
 							</td>
 						</tr>
@@ -133,6 +141,7 @@
 			 			break;
 			 		case '1':
 			 			alert("添加成功");
+			 			window.location.href = "setinfo.php";
 		 				break;
 			 		case '2':
 			 			alert("添加失败(作业重复)");
