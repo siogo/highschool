@@ -11,14 +11,20 @@
 	$student = $_POST['student'];
 	$grade = $_POST['grade'];
 	$teacher_id = $_POST['teacher'];
-	
-	for ($i=0; $i < count($course); $i++) { 
+
+	if($course ==''||$student == ''||$grade == ''||$teacher_id==''){
+		echo "0";
+	}else{
+		for ($i=0; $i < count($course); $i++) { 
 		$result = mysql_query("SELECT * FROM tb_choosecourse WHERE teacher_id = '".$teacher_id."' AND course_id = '".$course[$i]."' AND student_id = '".$student[$i]."'");
 		while ($row = mysql_fetch_array($result)) {
 			$id =  $row['id'];
 		}
 		$result_a = mysql_query("UPDATE tb_choosecourse SET grade = '".$grade[$i]."' WHERE id = '".$id."'");
+		}
+		echo "1";
 	}
-	echo "1";
+	
+	
 
 ?>

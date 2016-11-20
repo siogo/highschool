@@ -116,6 +116,9 @@
 			for (var i = 0; i < span.length; i++) {
 				if ($(span[i]).text()<60) {
 					$(span[i]).parent().parent().css('display','none');
+				}
+				if ($(span[i]).text() == "无"){
+					$(span[i]).parent().parent().css('display','none');
 				}				
 			}
 		})
@@ -126,7 +129,10 @@
 			for (var i = 0; i < span.length; i++) {
 				if ($(span[i]).text()>60) {
 					$(span[i]).parent().parent().css('display','none');
-				}				
+				}
+				if ($(span[i]).text() == "无"){
+					$(span[i]).parent().parent().css('display','none');
+				}			
 			}
 		})
 		// 全部成绩

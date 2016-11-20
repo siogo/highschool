@@ -160,7 +160,7 @@
 							    <p class="zw">
 								    <a href="###">
 								    <?php  
-								    		echo $ros['para_content'];
+								    		echo mb_substr($ros['para_content'],0,150,'utf-8');
 								    ?>
 									   
 									</a>
@@ -248,7 +248,7 @@
 
 		$('#search').click(function(){
 			var text = $('#txt').val();
-			window.location.href = "http://localhost/search.php?search="+text;
+			window.location.href = "search.php?search="+text;
 		});
 
 

@@ -164,7 +164,7 @@
 				    <span class="txsz" style="cursor:pointer">头像设置</span>
 				</div>
 				<div class="kk">
-				    <span class="yxyz" style="cursor:pointer">邮箱验证</span>
+				    <span class="yxyz" style="cursor:pointer">修改邮箱</span>
 				</div>
 				<div class="kk">
 				    <span class="mmxg" style="cursor:pointer">密码修改</span>
@@ -420,17 +420,16 @@
 			var reg = /1[0-9][0-9]{9}/;
 			var sex = $('.xs-1').find('input:radio:checked').val();
 			var text = $('#txt').val();
-			if(!reg.test(tel)){
-				alert("请输入正确格式电话");
-			}else{
-				$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
-					if(data == '1'){
-						alert("修改成功！");
-						$('.setion-2').fadeIn();
-						$('.setion-22').fadeOut();
-					}
-				});
-			}
+			// if(!reg.test(tel)){
+			// 	alert("请输入正确格式电话");
+			// }else{
+			// 	$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
+			// 		if(data == '1'){
+			// 			alert("修改成功！");
+			// 			window.location.reload() = "setinfo.php";
+			// 		}
+			// 	});
+			// }
 			if(group == '' || nickname == '' || tel == '' || sex == '' || text == '')
 			{
 				alert('内容不能为空!');
@@ -442,9 +441,8 @@
 			}
 			$.post('myinfo_modify.php',{nickname:nickname,tel:tel,sex:sex,text:text,type:'msg',group:group},function(data){
 				if(data == '1'){
-					alert("修改成功！");
-					$('.setion-2').fadeIn();
-					$('.setion-22').fadeOut();
+					alert("修改成功！");		
+					window.location.reload() = "setinfo.php";
 				}
 			});
 
@@ -501,6 +499,7 @@
 						$('#password_old').val("");
 						$('#pawd_1').val("");
 						$('#pawd_2').val("");
+						
 					}else{
 						alert("新密码长度至少为8位！");
 						$('#password_old').val("");

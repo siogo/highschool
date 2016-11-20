@@ -166,6 +166,8 @@
 					if(data == '1'){
 						alert("成绩修改成功");
 						window.location.reload() = "studentgrade.php";
+					}else{
+						alert("输入有误");
 					}
 				})
 			}

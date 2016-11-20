@@ -32,6 +32,7 @@
 		}
 		if($type == 'msg'){
 			$nickname = $_POST['nickname'];
+			setcookie('name',$nickname,time()+3600);
 			$tel = $_POST['tel'];
 			$sex = $_POST['sex'];
 			$text = $_POST['text'];
@@ -60,6 +61,7 @@
 		}
 		if($type == 'msg'){
 			$nickname = $_POST['nickname'];
+			setcookie('name',$nickname,time()+3600);
 			$tel = $_POST['tel'];
 			$sex = $_POST['sex'];
 			$text = $_POST['text'];

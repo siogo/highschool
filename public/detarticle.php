@@ -261,7 +261,7 @@
 				var x = event.clientX;
 				var y = event.clientY;						
 				$('#child_input').css("left", (x+(i*20)));
-				$('#child_input').css("top", (y+(i*380)));
+				$('#child_input').css("top", (y+(i*200)));
 				key = m_id;
 			});
 		}

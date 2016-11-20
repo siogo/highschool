@@ -86,8 +86,8 @@
 					    </div>
 					</div>
 					<div>
-					    <span>学分</span>
-						<select id="credits">
+					    <span style="margin-right:32px;">学分</span>
+						<select id="credits" style="width:302px;height:34px;">
 							<option value="1">1分</option>
 							<option value="2">2分</option>
 							<option value="3">3分</option>
@@ -157,23 +157,23 @@
 			var time = $('#time').val();
 			var jieshu = $('#jieshu').val();
 			console.log(credits);
-			// $.post("addcourse.php",{course_name:course_name,type:course_type,credits:credits,classroom:classroom,time:time,jieshu:jieshu}, function(data){
-			// 	switch(data){
-			// 		case '0':
-			// 			alert("添加失败(课程信息不全)");
-			// 			break;
-			// 		case '1':
-			// 			alert("添加成功");
-			// 			window.location.href = "setinfo.php";
-			// 			break;
-			// 		case '2':
-			// 			alert("添加失败(课程重复)");
-			// 			break;
-			// 		case '3':
-			// 			alert("添加失败(教室冲突)");
-			// 			break;
-			// 	}
-			// });
+			$.post("addcourse.php",{course_name:course_name,type:course_type,credits:credits,classroom:classroom,time:time,jieshu:jieshu}, function(data){
+				switch(data){
+					case '0':
+						alert("添加失败(课程信息不全)");
+						break;
+					case '1':
+						alert("添加成功");
+						window.location.href = "setinfo.php";
+						break;
+					case '2':
+						alert("添加失败(课程重复)");
+						break;
+					case '3':
+						alert("添加失败(教室冲突)");
+						break;
+				}
+			});
 		});
 
 	})	
